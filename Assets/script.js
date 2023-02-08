@@ -1,5 +1,5 @@
 
-
+// Random drink button
 document.getElementById("randomDrinkName").addEventListener("click", function() {
   this.textContent = "changed"
   
@@ -18,14 +18,19 @@ function fetchCocktail() {
   .then(function(data){
 
    
-    console.log(data.drinks.strDrink);
-
-    randomDrinkName = data.drinks[0].strDrink;
-    randomDrinkText = document.getElementById("randomDrinkTitle");
-    randomDrinkText.textContent = randomDrinkName;
+    console.log(data);
+var drink = data.drinks[0];
+    
+    randomDrinkName = document.getElementById("randomDrinkTitle");
+    randomDrinkName.textContent = drink.strDrink;
     randomDrinkImg = document.getElementById("randomDrinkImg");
-    randomDrinkImg.src = data.drinks[0].strDrinkThumb;
+    randomDrinkImg.src = drink.strDrinkThumb;
     
-    
+    for (var i = 1; i < 5; i++) {
+      drinkIngredients = document.getElementById("randomDrinkIngredients");
+      // drinkIngredients.textContent = drink.strIngredient(i);
+      console.log(drinkIngredients.textContent)
+      // drinkIngredients.textContent = drink.strIngredient1 + drink.strIngredient2
+    }
   })
 }
