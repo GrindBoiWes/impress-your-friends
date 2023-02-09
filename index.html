@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bulma Navigation Tutorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link rel="stylesheet" href="./Assets/style.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -13,7 +16,7 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="#" style="font-weight:bold;">
+          <a class="main-title" href="#" style="font-weight:bold;">
             Impress Your Friends 
           </a>
           <span class="navbar-burger burger" data-target="navMenu">
@@ -27,8 +30,11 @@
             <a href="#" class="navbar-item">Home</a>
             <a href="#" class="navbar-item">Drink</a>
             <a href="#" class="navbar-item">Food</a>
-            <a href="#" class="navbar-item">History</a>
-            <a href="#" class="navbar-item">Explore</a>
+            <a href="#" class="navbar-item">Saved Recipes</a>
+          <div class ="search-bar"></div>
+            <input class="input" type="text" placeholder="Find a recipe">
+            <a class="button is-info">Search</a>
+          </div>
           </div>
         </div>
       </div>
