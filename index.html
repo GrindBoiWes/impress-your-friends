@@ -51,20 +51,46 @@
       </p>
     </div>
   </section>
+
+
+  <!--Main Section Under Header-->
+<div id="main-content">
+  <div id="top-row">
+    <div id="find-section">
+      <p>Find a New Cocktail and Dish to Indulge in Today</p>
+      <div id="search-bar">
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="section is-medium">
   <button id="randomDrinkName">Random Drink</button>
   <h1 class="title" id="randomDrinkTitle">Random Cocktail</h1>
-  <h2 class="subtitle" id = "randomDrinkIngredients">
-    
-  </h2>
   <img id = "randomDrinkImg" src="">
+  <h2 class="subtitle" >
+    <ul id = "randomDrinkIngredients"></ul>
+    <p id = "drinkInstructions"></p>
+  </h2>
+  
 </section>
-<script src="/Assets/script.js"></script>
+
+<section class="section is-medium">
+  <button id="randomMealName">Random Meal</button>
+  <h1 class="title" id="randomMealTitle">Random Meal</h1>
+  <img id = "randomMealImg" src="">
+  <h2 class="subtitle" >
+    <ul id = "randomMealIngredients"></ul>
+    <p id = "mealInstructions"></p>
+  </h2>
+  
+</section>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   </body>
-  <footer>
-    Hey it's Marley
-  </footer>
-</html>
+
 <script src="./Assets/script.js">
   (function() {
     var burger = document.querySelector('.burger');
