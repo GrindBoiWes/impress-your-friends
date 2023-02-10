@@ -1,3 +1,15 @@
+.navbar {
+    background-color: #6B201D;
+    
+}
+ .navbar-item {
+    color:antiquewhite;
+ }
+
+
+
+
+
 /* Drink Button */
 drink-button { 
     margin: 10px;
