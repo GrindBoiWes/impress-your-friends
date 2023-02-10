@@ -1,7 +1,14 @@
 
 // Random drink button
 document.getElementById("randomDrinkName").addEventListener("click", function() {
-  this.textContent = "changed"
+  // this.textContent = "changed"
+  
+fetchCocktail();
+
+});
+
+document.getElementById("randomDrinkName2").addEventListener("click", function() {
+  this.textContent = "New drink?"
   
 fetchCocktail();
 
@@ -28,11 +35,27 @@ function fetchCocktail() {
     // Displays drink image
     randomDrinkImg = document.getElementById("randomDrinkImg");
     randomDrinkImg.src = drink.strDrinkThumb;
-    randomDrinkImg.style.width = "20%";
+    randomDrinkImg.style.width = "75%";
 
-    // Displays instructions to make drink
+    // Displays instructions to make drink, and will clear out previous steps
     randomDrinkSteps = document.getElementById("drinkInstructions");
-    randomDrinkSteps.textContent = drink.strInstructions;
+    randomDrinkSteps.textContent = ""
+    
+    // Loop to turn instructions into an array, and display as a numbered list
+    var drinkInstructions = drink.strInstructions.split(".");
+    for (var i = 0; i < drinkInstructions.length; i++) {
+      if (drinkInstructions[i].trim() === "") {
+        break;
+      }
+      var listItem = document.createElement("li");
+      console.log(drinkInstructions) 
+      listItem.textContent = drinkInstructions[i];
+      randomDrinkSteps.appendChild(listItem);
+      
+    }
+     
+    
+    
 
     // Clears out the ingredient list
     randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
@@ -59,7 +82,14 @@ function fetchCocktail() {
 
 // Random meal button
 document.getElementById("randomMealName").addEventListener("click", function() {
-  this.textContent = "changed"
+  // this.textContent = "changed"
+  
+fetchMeal();
+
+});
+
+document.getElementById("randomMealName2").addEventListener("click", function() {
+  // this.textContent = "changed"
   
 fetchMeal();
 
@@ -86,11 +116,23 @@ function fetchMeal() {
     // Displays meal image
     randomMealImg = document.getElementById("randomMealImg");
     randomMealImg.src = meal.strMealThumb;
-    randomMealImg.style.width = "20%";
+    randomMealImg.style.width = "75%";
 
     // Displays instructions to make meal
     randomMealSteps = document.getElementById("mealInstructions");
-    randomMealSteps.textContent = meal.strInstructions;
+    randomMealSteps.textContent = ""
+
+    var mealInstructions = meal.strInstructions.split(".");
+    for (var i = 0; i < mealInstructions.length; i++) {
+      if (mealInstructions[i].trim() === "") {
+        break;
+      }
+      var listItem = document.createElement("li");
+      console.log(mealInstructions) 
+      listItem.textContent = mealInstructions[i];
+      randomMealSteps.appendChild(listItem);
+      
+    }
 
     // Clears out the ingredient list
     randomMealIngredients = document.getElementById("randomMealIngredients");
@@ -112,3 +154,49 @@ function fetchMeal() {
     }
   )
 };
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
+    }
+  });
+});
