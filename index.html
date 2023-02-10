@@ -3,40 +3,221 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Impress Your Friends!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Bulma Navigation Tutorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="./Assets/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   </head>
   <body>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="main-title" href="#" style="font-weight:bold;">
+            Impress Your Friends 
+          </a>
+          <span class="navbar-burger burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+
+        <div class="dropdown-food">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-food">
+              <span>Food</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+
+        
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                Beef
+              </a>
+              <a class="dropdown-item">
+                Chicken
+              </a>
+              <a href="#" class="dropdown-item">
+                Seafood
+              </a>
+              <a href="#" class="dropdown-item">
+                Vegan
+              </a>
+              <a href="#" class="dropdown-item">
+                Desserts
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-drinks">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-drinks">
+              <span>Drinks</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                Whiskey
+              </a>
+              <a class="dropdown-item">
+                Rum
+              </a>
+              <a href="#" class="dropdown-item">
+                Vodka
+              </a>
+              <a href="#" class="dropdown-item">
+                Gin
+              </a>
+              <a href="#" class="dropdown-item">
+                Non-Alcoholic 
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-saved">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
+              <span>Saved Recipes</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                This food
+              </a>
+              <a class="dropdown-item">
+               That food
+              </a>
+              <a href="#" class="dropdown-item is-active">
+                More Food
+              </a>
+              <a href="#" class="dropdown-item">
+               Yet again, food
+              </a>  
+              <a href="#" class="dropdown-item">
+                Maybe a drink
+              </a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
   <section class="section">
     <div class="container">
       <h1 class="title">
         Impress Your Friends
       </h1>
       <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
+        My first website with <strong>Bulma</strong>!!
       </p>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <div class="notification is-primary">
-        This container is <strong>centered</strong> on desktop and larger viewports.
+
+
+
+
+  <!--Main Section Under Header-->
+  <div id="main-content">
+    <div id="top-row">
+      <div id="find-section">
+        <p>Find a New Cocktail and Dish to Indulge in Today</p>
+        <div id="search-bar">
+          <div class="row">
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        First column
-      </div>
-      <div class="column">
-        Second column
-      </div>
-      <div class="column">
-        Third column
-      </div>
+  </div>
+
+
+  <!-- Random drink button -->
+  <button class="js-modal-trigger" data-target="modal-js-drink" id="randomDrinkName">
+    Want a drink?
+  </button>
+
+
+  <!-- Pop up of drink -->
+  <div id="modal-js-drink" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <button id="randomDrinkName2" class="button is-info">New Drink?</button>
+      </header>
+      <section class="modal-card-body">
+        <h1 class="title" id="randomDrinkTitle">Random Cocktail</h1>
+        <img id="randomDrinkImg" src="">
+        <h2 class="subtitle"> Ingredients </h2>
+        <ul id="randomDrinkIngredients"></ul>
+        <br>
+        <h2 class="subtitle"> Instructions </h2>
+        <ol id="drinkInstructions"></ol>
+      </section>
     </div>
-  </section>
-  <figure class="image is-128x128">
-    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-  </figure>
-  </body>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+
+
+  <!-- Random meal button -->
+  <button class="js-modal-trigger" data-target="modal-js-meal" id="randomMealName">
+    Want a meal?
+  </button>
+
+
+  <!-- Pop up of meal -->
+  <div id="modal-js-meal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <button id="randomMealName2" class="button is-info">New Meal?</button>
+      </header>
+      <section class="modal-card-body">
+        <h1 class="title" id="randomMealTitle">Random Meal</h1>
+        <img id="randomMealImg" src="">
+        <h2 class="subtitle"> Ingredients </h2>
+        <ul id="randomMealIngredients"></ul>
+        <br>
+        <h2 class="subtitle"> Instructions </h2>
+        <ol id="mealInstructions"></ol>
+      </section>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</body>
+
+<script src="./Assets/script.js">
+  (function () {
+    var burger = document.querySelector('.burger');
+    var nav = document.querySelector('#' + burger.dataset.target);
+    burger.addEventListener('click', function () {
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+    });
+  })();
+</script>
+</body>
+
 </html>
