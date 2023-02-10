@@ -25,17 +25,93 @@
             <span></span>
           </span>
         </div>
-        <div id="navMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <a href="#" class="navbar-item">Home</a>
-            <a href="#" class="navbar-item">Drink</a>
-            <a href="#" class="navbar-item">Food</a>
-            <a href="#" class="navbar-item">Saved Recipes</a>
-          <div class ="search-bar"></div>
-            <input class="input" type="text" placeholder="Find a recipe">
-            <a class="button is-info">Search</a>
+        <div class="dropdown-food">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-food">
+              <span>Food</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
           </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                Beef
+              </a>
+              <a class="dropdown-item">
+                Chicken
+              </a>
+              <a href="#" class="dropdown-item">
+                Seafood
+              </a>
+              <a href="#" class="dropdown-item">
+                Vegan
+              </a>
+              <a href="#" class="dropdown-item">
+                Desserts
+              </a>
+            </div>
           </div>
+        </div>
+        <div class="dropdown-drinks">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-drinks">
+              <span>Drinks</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                Whiskey
+              </a>
+              <a class="dropdown-item">
+                Rum
+              </a>
+              <a href="#" class="dropdown-item">
+                Vodka
+              </a>
+              <a href="#" class="dropdown-item">
+                Gin
+              </a>
+              <a href="#" class="dropdown-item">
+                Non-Alcoholic 
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-saved">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
+              <span>Saved Recipes</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                This food
+              </a>
+              <a class="dropdown-item">
+               That food
+              </a>
+              <a href="#" class="dropdown-item is-active">
+                More Food
+              </a>
+              <a href="#" class="dropdown-item">
+               Yet again, food
+              </a>  
+              <a href="#" class="dropdown-item">
+                Maybe a drink
+              </a>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </nav>

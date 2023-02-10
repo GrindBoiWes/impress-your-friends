@@ -23,6 +23,14 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.button {
+    background-color:#6B201D;
+    color: antiquewhite;
+    position:relative;
+    border-color: #6B201D;
+    padding-left: 3em;
+}
+
 
 /* Drink Button */
 /*drink-button 
