@@ -200,3 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// Buttons for dropdown menu located in the navbar
+

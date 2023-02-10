@@ -37,7 +37,9 @@
     color:antiquewhite;
  }
 
-
+#dropdown {
+    display: inline-flex;
+}
 
 /* Drink Button */
 /*drink-button 
