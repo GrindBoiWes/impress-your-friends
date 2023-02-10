@@ -1,11 +1,54 @@
+.navbar {
+    background-color: #6B201D;
+    height: 125px;
+    
+}
+.main-title {
+    font-size:3em;
+    color:antiquewhite;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+
+}
+ .navbar-item {
+    color:antiquewhite;
+    font-size : 1.75em;
+
+ }
+
+
+.button.is-info {
+    background-color: antiquewhite;
+    color:#6B201D;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button {
+    background-color:#6B201D;
+    color: antiquewhite;
+    position:relative;
+    border-color: #6B201D;
+    padding-left: 3em;
+}
+
+    
+
+ .navbar-item {
+    color:antiquewhite;
+ }
+
+
+
 /* Drink Button */
-drink-button { 
+/*drink-button 
     margin: 10px;
-    background-color: aqua; }
+    background-color: aqua; 
 
 /*Food Button*/
 
 
 
-
-
+/* Navbar Adjustments
+   Navbar color =  #6B201D; 
+   Font Size = 1.75em;
+   Height = 125px;
