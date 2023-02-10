@@ -31,6 +31,13 @@
     padding-left: 3em;
 }
 
+    
+}
+ .navbar-item {
+    color:antiquewhite;
+ }
+
+
 
 /* Drink Button */
 /*drink-button 
@@ -38,8 +45,6 @@
     background-color: aqua; 
 
 /*Food Button*/
-
-
 
 
 
