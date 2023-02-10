@@ -112,3 +112,15 @@ function fetchMeal() {
     }
   )
 };
+
+
+
+
+const dropdown = document.querySelector("#dropdown");
+const trigger = dropdown.querySelector(".dropdown-trigger");
+
+trigger.addEventListener("click", function() {
+  const menu = dropdown.querySelector(".dropdown-menu");
+  menu.classList.toggle("is-active");
+});
+
