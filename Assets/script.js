@@ -1,4 +1,3 @@
-
 // Random drink button
 document.getElementById("randomDrinkName").addEventListener("click", function() {
   this.textContent = "changed"

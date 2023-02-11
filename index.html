@@ -11,6 +11,24 @@
     <link rel="stylesheet" href="./Assets/style.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   </head>
+
+<title>Verify you are legal drinking age!</title>
+<script type="text/javascript">
+  
+var name = window.prompt("Please enter your name:");
+var ageCheck = window.prompt("Please enter your age:");
+
+if (ageCheck < 21) {
+  window.alert("You submitted that you are " + ageCheck + ": years old, " + name + ".");
+  window.alert("You must be at least 21 years or older to visit this site.");
+  location.reload();
+} else if (ageCheck >= 21 && ageCheck <= 100) {
+  window.alert("You entered that you are " + ageCheck + ": years old, " + name + ".");
+  window.alert("You are the legal drinking age!");
+  window.alert("Welcome " + name + "!");
+}
+</script>
+
   <body>
 
     <nav class="navbar">
@@ -25,7 +43,7 @@
             <span></span>
           </span>
         </div>
-
+        
         <div class="dropdown-food">
           <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-food">
@@ -35,15 +53,7 @@
               </span>
             </button>
 
-        <div id="navMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <a href="#" class="navbar-item">Home</a>
-            <a href="#" class="navbar-item">Drink</a>
-            <a href="#" class="navbar-item">Food</a>
-            <a href="#" class="navbar-item">History</a>
-            <a href="#" class="navbar-item">Explore</a>
-
-          </div>
+        
           <div class="dropdown-menu" id="dropdown-menu" role="menu">
             <div class="dropdown-content">
               <a href="#" class="dropdown-item">
@@ -63,6 +73,7 @@
               </a>
             </div>
           </div>
+        </div>
         </div>
         <div class="dropdown-drinks">
           <div class="dropdown-trigger">
@@ -122,10 +133,11 @@
             </div>
           </div>
         </div>
-        </div>
+        
       </div>
-    </nav>
-    
+    </div>
+  </nav>
+
 
   <section class="section">
     <div class="container">
@@ -140,52 +152,89 @@
 
 
   <!--Main Section Under Header-->
-<div id="main-content">
-  <div id="top-row">
-    <div id="find-section">
-      <p>Find a New Cocktail and Dish to Indulge in Today</p>
-      <div id="search-bar">
-        <div class="row">
+  <div id="main-content">
+    <div id="top-row">
+      <div id="find-section">
+        <p>Find a New Cocktail and Dish to Indulge in Today</p>
+        <div id="search-bar">
+          <div class="row">
 
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<section class="section is-medium">
-  <button id="randomDrinkName">Random Drink</button>
-  <h1 class="title" id="randomDrinkTitle">Random Cocktail</h1>
-  <img id = "randomDrinkImg" src="">
-  <h2 class="subtitle" >
-    <ul id = "randomDrinkIngredients"></ul>
-    <p id = "drinkInstructions"></p>
-  </h2>
-  
-</section>
 
-<section class="section is-medium">
-  <button id="randomMealName">Random Meal</button>
-  <h1 class="title" id="randomMealTitle">Random Meal</h1>
-  <img id = "randomMealImg" src="">
-  <h2 class="subtitle" >
-    <ul id = "randomMealIngredients"></ul>
-    <p id = "mealInstructions"></p>
-  </h2>
-  
-</section>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  </body>
+  <!-- Random drink button -->
+  <button class="js-modal-trigger" data-target="modal-js-drink" id="randomDrinkName">
+    Want a drink?
+  </button>
+
+
+  <!-- Pop up of drink -->
+  <div id="modal-js-drink" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <button id="randomDrinkName2" class="button is-info">New Drink?</button>
+      </header>
+      <section class="modal-card-body">
+        <h1 class="title" id="randomDrinkTitle">Random Cocktail</h1>
+        <img id="randomDrinkImg" src="">
+        <h2 class="subtitle"> Ingredients </h2>
+        <ul id="randomDrinkIngredients"></ul>
+        <br>
+        <h2 class="subtitle"> Instructions </h2>
+        <ol id="drinkInstructions"></ol>
+      </section>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+
+
+  <!-- Random meal button -->
+  <button class="js-modal-trigger" data-target="modal-js-meal" id="randomMealName">
+    Want a meal?
+  </button>
+
+
+  <!-- Pop up of meal -->
+  <div id="modal-js-meal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <button id="randomMealName2" class="button is-info">New Meal?</button>
+      </header>
+      <section class="modal-card-body">
+        <h1 class="title" id="randomMealTitle">Random Meal</h1>
+        <img id="randomMealImg" src="">
+        <h2 class="subtitle"> Ingredients </h2>
+        <ul id="randomMealIngredients"></ul>
+        <br>
+        <h2 class="subtitle"> Instructions </h2>
+        <ol id="mealInstructions"></ol>
+      </section>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</body>
 
 <script src="./Assets/script.js">
-  (function() {
+  (function () {
     var burger = document.querySelector('.burger');
-    var nav = document.querySelector('#'+burger.dataset.target);
-        burger.addEventListener('click', function(){
-          burger.classList.toggle('is-active');
-          nav.classList.toggle('is-active');
-        });
-      })();
-    </script>
-  </body>
+    var nav = document.querySelector('#' + burger.dataset.target);
+    burger.addEventListener('click', function () {
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+    });
+  })();
+</script>
+</body>
+
 </html>
