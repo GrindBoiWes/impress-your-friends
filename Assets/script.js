@@ -204,3 +204,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Buttons for dropdown menu located in the navbar
 
+const buttons = document.querySelectorAll('.dropdown-item');
+buttons.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+  });
+});
+
+const resultsList = document.querySelector('#results-list');
+
+function displayData(data) {
+  resultsList.innerHTML = '';
+  data.meals.forEach(meal => {
+    const mealItem = document.createElement('div');
+    mealItem.classList.add('meal-item');
+    mealItem.innerHTML = `
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+      <h3>${meal.strMeal}</h3>
+    `;
+    resultsList.appendChild(mealItem);
+  });
+}
+
+
+
+function fetchData(foodType) {
+  fetch(`https://www.themealdb.com/api/json/v1/9973533/filter.php?c=${foodType}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+    
+};
+
+function navClick() {
+  document.getElementById('nav-btn').classList.toggle('show');
+}
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropdown-trigger')) {
+    var dropMenu = document.getElementById('dropdown-menu');
+      if (dropMenu.classList.contains('show')) {
+        dropMenu.classList.remove('show');                
+      }
+  }
+}
