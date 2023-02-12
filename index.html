@@ -34,48 +34,48 @@
             <span>Food</span>
           </button>
         </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-menu" id="dropdown-menu-food" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-food="beef">
               Beef
             </a>
-            <a class="dropdown-item">
+            <a class="dropdown-item" data-food="chicken">
               Chicken
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-food="seafood">
               Seafood
             </a>
-            <a href="#" class="dropdown-item">
-              Vegetarian
+            <a href="#" class="dropdown-item" data-food="pork">
+              Pork
             </a>
-            <a href="#" class="dropdown-item">
-              Desserts
+            <a href="#" class="dropdown-item" data-food="vegetarian">
+              Vegetarian
             </a>
           </div>
         </div>
       </div>
 
-      <div class="dropdown-saved">
+      <<div class="dropdown-saved">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
             <span>Drinks</span>
           </button>
         </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-menu" id="dropdown-menu-drinks" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-drinks="whiskey">
               Whiskey
             </a>
-            <a class="dropdown-item">
+            <a class="dropdown-item" data-drinks="rum">
               Rum
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-drinks="vodka">
               Vodka
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-drinks="gin">
               Gin
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="#" class="dropdown-item" data-drinks="non-alcoholic">
               Non-Alcoholic
             </a>
           </div>
@@ -117,12 +117,8 @@
 
   <section class="section">
     <div class="container">
-      <h1 class="title">
-        Impress Your Friends
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!!
-      </p>
+      <h1 class="title">Food and Drinks Results</h1>
+      <ul id="results-list"></ul>
     </div>
   </section>
 
