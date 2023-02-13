@@ -219,12 +219,23 @@ function fetchData(foodType) {
 };
 
 function fetchDataDrinks(drinkType) {
-  fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${drinkType}`)
+  // Added if statement due to non-alcoholic being a different parameter
+  if (drinkType === 'non-alcoholic') {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
     .then(response => response.json())
     .then(data => {
-      displayData(data, true);
+      displayData(data);
+    })
+  } else {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
     });
-}
+  }
+};
+
+
 
 const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
 const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
@@ -233,13 +244,15 @@ foodDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const foodType = event.target.dataset.food;
     fetchData(foodType);
+    console.log(foodType)
   });
 });
 
 drinkDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
-    const drinkType = event.target.dataset.drink;
+    const drinkType = event.target.dataset.drinks;
     fetchDataDrinks(drinkType);
+    console.log(drinkType);
   });
 });
 
@@ -281,4 +294,11 @@ dropItem.forEach(button => {
   });
 });
 
+dropItem.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const drinkType = event.target.dataset.drinks;
+    fetchData(drinkType);
+  });
+});
 // End Wes Section
