@@ -1,3 +1,39 @@
+// code to display modal message for age verification
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var message = document.getElementById("modal-message");
+var content = document.getElementById("content");
+
+window.onload = function() {
+  var name = prompt("Please enter your name:");
+  var ageCheck = parseInt(prompt("Please enter your age:"));
+
+  if (ageCheck < 21) {
+    message.innerHTML = "You submitted that you are " + ageCheck + " years old, " + name + ". You must be at least 21 years or older to visit this site.";
+    modal.style.display = "block";
+    content.style.display = "none";
+    alert("You're not old enough to enter! Check back in when you're 21 years or older!");
+  } else if (ageCheck >= 21 && ageCheck <= 100) {
+    content.style.display = "block";
+    console.log(content);
+    message.innerHTML = "You entered that you are " + ageCheck + " years old, " + name + ". You are the legal drinking age! Welcome " + name + "!";
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+    content.style.display = "block";
+  }
+};
+
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 // Random drink button
 document.getElementById("randomDrinkName").addEventListener("click", function() {
   // this.textContent = "changed"
