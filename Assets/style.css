@@ -162,6 +162,18 @@
     object-fit: cover;
   }
 
+  #footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #6B201D;
+  }
+  
+  .footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   /*.show {
     display:block;
 }
