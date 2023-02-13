@@ -55,7 +55,7 @@ function fetchCocktail() {
     }
      
     
-    
+                       
 
     // Clears out the ingredient list
     randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
