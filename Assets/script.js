@@ -219,7 +219,7 @@ function fetchData(foodType) {
 };
 
 function fetchDataDrinks(drinkType) {
-  fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${drinkType}`)
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?c=${drinkType}`)
     .then(response => response.json())
     .then(data => {
       displayData(data, true);
@@ -238,7 +238,7 @@ foodDropdownItems.forEach(item => {
 
 drinkDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
-    const drinkType = event.target.dataset.drink;
+    const drinkType = event.target.dataset.drinks;
     fetchDataDrinks(drinkType);
   });
 });
