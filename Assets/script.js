@@ -92,7 +92,7 @@ function fetchCocktail() {
     }
      
     
-    
+                       
 
     // Clears out the ingredient list
     randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
@@ -239,10 +239,91 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Buttons for dropdown menu located in the navbar
+// Buttons for dropdown menu located in the navbar  Wes Section
 
-const buttons = document.querySelectorAll('.dropdown-item');
-buttons.forEach(button => {
+
+const resultsList = document.querySelector('#results-list');
+
+
+
+function fetchData(foodType) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data)
+    })
+    
+};
+
+function fetchDataDrinks(drinkType) {
+  // Added if statement due to non-alcoholic being a different parameter
+  if (drinkType === 'non-alcoholic') {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
+    })
+  } else {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
+    });
+  }
+};
+
+
+
+const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
+
+foodDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+    console.log(foodType)
+  });
+});
+
+drinkDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const drinkType = event.target.dataset.drinks;
+    fetchDataDrinks(drinkType);
+    console.log(drinkType);
+  });
+});
+
+function displayData(data) {
+  resultsList.innerHTML = '';
+  if (data.meals) {
+    // display meal data
+    data.meals.forEach(meal => {
+      const mealItem = document.createElement('div');
+      mealItem.classList.add('meal-item');
+      mealItem.innerHTML = `
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        <h3>${meal.strMeal}</h3>
+      `;
+      resultsList.appendChild(mealItem);
+    });
+  } else if (data.drinks) {
+    // display drink data
+    data.drinks.forEach(drink => {
+      const drinkItem = document.createElement('div');
+      drinkItem.classList.add('drink-item');
+      drinkItem.innerHTML = `
+        <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+        <h3>${drink.strDrink}</h3>
+      `;
+      resultsList.appendChild(drinkItem);
+    });
+  } else {
+    resultsList.innerHTML = 'No results found.';
+  }
+};
+
+const dropItem = document.querySelectorAll('.dropdown-item');
+dropItem.forEach(button => {
   button.addEventListener('click', event => {
     event.preventDefault();
     const foodType = event.target.dataset.food;
@@ -250,41 +331,11 @@ buttons.forEach(button => {
   });
 });
 
-const resultsList = document.querySelector('#results-list');
-
-function displayData(data) {
-  resultsList.innerHTML = '';
-  data.meals.forEach(meal => {
-    const mealItem = document.createElement('div');
-    mealItem.classList.add('meal-item');
-    mealItem.innerHTML = `
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      <h3>${meal.strMeal}</h3>
-    `;
-    resultsList.appendChild(mealItem);
+dropItem.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const drinkType = event.target.dataset.drinks;
+    fetchData(drinkType);
   });
-}
-
-
-
-function fetchData(foodType) {
-  fetch(`https://www.themealdb.com/api/json/v1/9973533/filter.php?c=${foodType}`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    })
-    
-};
-
-function navClick() {
-  document.getElementById('nav-btn').classList.toggle('show');
-}
-
-window.onclick = function(e) {
-  if (!e.target.matches('.dropdown-trigger')) {
-    var dropMenu = document.getElementById('dropdown-menu');
-      if (dropMenu.classList.contains('show')) {
-        dropMenu.classList.remove('show');                
-      }
-  }
-}
+});
+// End Wes Section
