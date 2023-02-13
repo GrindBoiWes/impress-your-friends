@@ -200,3 +200,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// Buttons for dropdown menu located in the navbar  Wes Section
+
+
+const resultsList = document.querySelector('#results-list');
+
+
+
+function fetchData(foodType) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data)
+    })
+    
+};
+
+function fetchDataDrinks(drinkType) {
+  fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?i=${drinkType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data, true);
+    });
+}
+
+const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
+
+foodDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+  });
+});
+
+drinkDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const drinkType = event.target.dataset.drink;
+    fetchDataDrinks(drinkType);
+  });
+});
+
+function displayData(data) {
+  resultsList.innerHTML = '';
+  if (data.meals) {
+    // display meal data
+    data.meals.forEach(meal => {
+      const mealItem = document.createElement('div');
+      mealItem.classList.add('meal-item');
+      mealItem.innerHTML = `
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        <h3>${meal.strMeal}</h3>
+      `;
+      resultsList.appendChild(mealItem);
+    });
+  } else if (data.drinks) {
+    // display drink data
+    data.drinks.forEach(drink => {
+      const drinkItem = document.createElement('div');
+      drinkItem.classList.add('drink-item');
+      drinkItem.innerHTML = `
+        <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+        <h3>${drink.strDrink}</h3>
+      `;
+      resultsList.appendChild(drinkItem);
+    });
+  } else {
+    resultsList.innerHTML = 'No results found.';
+  }
+};
+
+const dropItem = document.querySelectorAll('.dropdown-item');
+dropItem.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+  });
+});
+
+// End Wes Section
