@@ -116,6 +116,36 @@
     display:block;
   }
 
+.results-list {
+  display:block;
+  padding: 10px 10px;
+  justify-content: space-between;
+}
+
+.drink-item {
+  display:flex;
+  padding: 15px;
+  border: 2px solid #36666A;
+  margin:10px;
+}
+
+ .drink-item img {
+  width:200px;
+  height:200px;
+ }
+
+.meal-item {
+  display:flex;
+  padding: 15px;
+  border: 2px solid #36666A;
+  margin: 10px;
+}
+
+.meal-item img {
+  width:200px;
+  height:200px;
+}
+
 
   #footer {
     display: flex;

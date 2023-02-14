@@ -248,7 +248,7 @@ function fetchData(foodType) {
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
     .then(response => response.json())
     .then(data => {
-      displayData(data)
+      displayData(data);
     })
     
 };
@@ -296,7 +296,7 @@ function displayData(data) {
   resultsList.innerHTML = '';
   if (data.meals) {
     // display meal data
-    data.meals.forEach(meal => {
+    data.meals.slice(0, 10).forEach(meal => {
       const mealItem = document.createElement('div');
       mealItem.classList.add('meal-item');
       mealItem.innerHTML = `
@@ -307,7 +307,7 @@ function displayData(data) {
     });
   } else if (data.drinks) {
     // display drink data
-    data.drinks.forEach(drink => {
+    data.drinks.slice(0, 10).forEach(drink => {
       const drinkItem = document.createElement('div');
       drinkItem.classList.add('drink-item');
       drinkItem.innerHTML = `
@@ -320,6 +320,7 @@ function displayData(data) {
     resultsList.innerHTML = 'No results found.';
   }
 };
+
 
 const dropItem = document.querySelectorAll('.dropdown-item');
 dropItem.forEach(button => {
