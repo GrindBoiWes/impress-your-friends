@@ -240,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Buttons for dropdown menu located in the navbar  Wes Section
 
-
 const resultsList = document.querySelector('#results-list');
 
 
@@ -260,13 +259,13 @@ function fetchData(foodType, mealId) {
 function fetchDataDrinks(drinkType) {
   // Added if statement due to non-alcoholic being a different parameter
   if (drinkType === 'non-alcoholic') {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
     .then(response => response.json())
     .then(data => {
       displayData(data);
     })
   } else {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkType}`)
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkType)
     .then(response => response.json())
     .then(data => {
       displayData(data);
@@ -275,14 +274,35 @@ function fetchDataDrinks(drinkType) {
 };
 
 
-
-const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+ const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
 const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
+
+function displayIngredients(recipeId) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`)
+    .then(response => response.json())
+    .then(data => {
+      const recipe = data.meals[0];
+      const ingredients = [];
+
+      // Collect the ingredients and their measurements
+      for (let i = 1; i <= 20; i++) {
+        if (recipe[`strIngredient${i}`]) {
+          ingredients.push(`${recipe[`strIngredient${i}`]} (${recipe[`strMeasure${i}`]})`);
+        } else {
+          break;
+        }
+      }
+
+      // Display the ingredients in a modal or alert
+      const ingredientsList = ingredients.join('\n');
+      alert(`Ingredients for ${recipe.strMeal}:\n${ingredientsList}`);
+    });
+}
 
 foodDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const foodType = event.target.dataset.food;
-    fetchData(foodType);
+   fetchData(foodType);
     console.log(foodType)
   });
 });
@@ -306,6 +326,7 @@ function displayData(data) {
       mealItem.innerHTML = `
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
         <h3>${meal.strMeal}</h3>
+        <button class="ingredients-button" data-meal-id="${meal.idMeal}">View Ingredients & Instructions</button>
       `;
       resultsList.appendChild(mealItem);
     });
@@ -317,13 +338,60 @@ function displayData(data) {
       drinkItem.innerHTML = `
         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
         <h3>${drink.strDrink}</h3>
+        <button class="ingredients-button" data-drink-id="${drink.idDrink}">View Ingredients & Instructions</button>
       `;
       resultsList.appendChild(drinkItem);
     });
   } else {
     resultsList.innerHTML = 'No results found.';
   }
-};
+
+  const ingredientsButtons = document.querySelectorAll('.ingredients-button');
+  ingredientsButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const mealId = event.target.dataset.mealId;
+      const drinkId = event.target.dataset.drinkId;
+      let fetchUrl = '';
+
+      if (mealId) {
+        fetchUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+      } else if (drinkId) {
+        fetchUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
+      }
+
+      if (fetchUrl) {
+        fetch(fetchUrl)
+          .then(response => response.json())
+          .then(data => {
+            const instructions = data.meals ? data.meals[0].strInstructions : data.drinks[0].strInstructions;
+            const ingredients = [];
+
+            for (let i = 1; i <= 20; i++) {
+              const ingredient = data.meals ? data.meals[0][`strIngredient${i}`] : data.drinks[0][`strIngredient${i}`];
+              const measure = data.meals ? data.meals[0][`strMeasure${i}`] : data.drinks[0][`strMeasure${i}`];
+
+              if (ingredient) {
+                ingredients.push(`${ingredient} - ${measure}`);
+              }
+            }
+
+            const mealItem = event.target.parentElement;
+            const details = document.createElement('div');
+            details.classList.add('meal-details');
+            details.innerHTML = `
+              <h4>Ingredients:</h4>
+              <ul>
+                ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+              </ul>
+              <h4>Instructions:</h4>
+              <p>${instructions}</p>
+            `;
+            mealItem.appendChild(details);
+          });
+      }
+    });
+  });
+}
 
 
 const dropItem = document.querySelectorAll('.dropdown-item');
@@ -341,5 +409,8 @@ dropItem.forEach(button => {
     const drinkType = event.target.dataset.drinks;
     fetchData(drinkType);
   });
-});
-// End Wes Section
+}); 
+//End Wes Section
+
+
+
