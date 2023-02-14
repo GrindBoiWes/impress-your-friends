@@ -245,40 +245,14 @@ const resultsList = document.querySelector('#results-list');
 
 
 function fetchData(foodType, mealId) {
-//   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
-//     .then(response => response.json())
-//     .then(data => {
-//       const meal = data.meals.find(m => m.idMeal === mealId);
-//       fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal}`)
-//         .then(response => response.json())
-//         .then(data => {
-//           displayData(data.meals[0]);
-//           console.log(meal)
-//           console.log(mealId)
-//         })
-//     })
-// };
-// function fetchData(foodType) {
+
   
   
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
     .then(response => response.json())
     .then(data => {
       displayData(data);
-      for (var i = 1; i < 10; i++) {
-      var foodId = data.meals[i].idMeal;
-      console.log(foodId)
-      foodIdApi = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=` + foodId;
-      console.log(foodIdApi)
-      
-      fetch(foodIdApi)
-      .then(function (response1) {
-        return response1.json();
-      })
-      .then(function(data1){
-        console.log(data1)
-      })
-  }
+
     })
       
 };
