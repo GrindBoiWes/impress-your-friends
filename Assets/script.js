@@ -1,3 +1,38 @@
+// code to display modal message for age verification
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var message = document.getElementById("modal-message");
+var content = document.getElementById("content");
+
+window.onload = function() {
+  var name = prompt("Please enter your name:");
+  var ageCheck = parseInt(prompt("Please enter your age:"));
+
+  if (ageCheck < 21) {
+    message.innerHTML = "You submitted that you are " + ageCheck + " years old, " + name + ". You must be at least 21 years or older to visit this site.";
+    modal.style.display = "block";
+    content.style.display = "none";
+    alert("You're not old enough to enter! Check back in when you're 21 years or older!");
+  } else if (ageCheck >= 21 && ageCheck <= 100) {
+    content.style.display = "block";
+    console.log(content);
+    message.innerHTML = "You entered that you are " + ageCheck + " years old, " + name + ". You are the legal drinking age! Welcome " + name + "!";
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+    content.style.display = "block";
+  }
+};
+
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 // Random drink button
 document.getElementById("randomDrinkName").addEventListener("click", function() {
@@ -55,7 +90,7 @@ function fetchCocktail() {
     }
      
     
-    
+                       
 
     // Clears out the ingredient list
     randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
@@ -200,3 +235,107 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// Buttons for dropdown menu located in the navbar  Wes Section
+
+
+const resultsList = document.querySelector('#results-list');
+
+
+
+function fetchData(foodType) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
+    })
+    
+};
+
+function fetchDataDrinks(drinkType) {
+  // Added if statement due to non-alcoholic being a different parameter
+  if (drinkType === 'non-alcoholic') {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
+    })
+  } else {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkType}`)
+    .then(response => response.json())
+    .then(data => {
+      displayData(data);
+    });
+  }
+};
+
+
+
+const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
+
+foodDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+    console.log(foodType)
+  });
+});
+
+drinkDropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const drinkType = event.target.dataset.drinks;
+
+    fetchDataDrinks(drinkType);
+    console.log(drinkType);
+  });
+});
+
+function displayData(data) {
+  resultsList.innerHTML = '';
+  if (data.meals) {
+    // display meal data
+    data.meals.slice(0, 10).forEach(meal => {
+      const mealItem = document.createElement('div');
+      mealItem.classList.add('meal-item');
+      mealItem.innerHTML = `
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        <h3>${meal.strMeal}</h3>
+      `;
+      resultsList.appendChild(mealItem);
+    });
+  } else if (data.drinks) {
+    // display drink data
+    data.drinks.slice(0, 10).forEach(drink => {
+      const drinkItem = document.createElement('div');
+      drinkItem.classList.add('drink-item');
+      drinkItem.innerHTML = `
+        <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+        <h3>${drink.strDrink}</h3>
+      `;
+      resultsList.appendChild(drinkItem);
+    });
+  } else {
+    resultsList.innerHTML = 'No results found.';
+  }
+};
+
+
+const dropItem = document.querySelectorAll('.dropdown-item');
+dropItem.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const foodType = event.target.dataset.food;
+    fetchData(foodType);
+  });
+});
+
+dropItem.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const drinkType = event.target.dataset.drinks;
+    fetchData(drinkType);
+  });
+});
+// End Wes Section
