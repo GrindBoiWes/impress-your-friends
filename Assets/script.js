@@ -379,7 +379,7 @@ function displayData(data) {
               <ul>
                 ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
               </ul>
-              <h4>Instructions:</h4>
+              <h5>Instructions:</h5>
               <p>${instructions}</p>
             `;
             mealItem.appendChild(details);
@@ -406,6 +406,8 @@ dropItem.forEach(button => {
     fetchData(drinkType);
   });
 }); 
+
+
 //End Wes Section
 
 

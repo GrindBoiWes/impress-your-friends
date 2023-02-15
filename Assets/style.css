@@ -102,7 +102,7 @@
   }
   
   .dropdown-saved:hover .dropdown-menu {
-    display: block;
+    display: flex;
     
   }
 
@@ -122,7 +122,7 @@
   }
   
   .dropdown-item {
-    display:block;
+    display:flex;
   }
 
 .results-list {
@@ -133,9 +133,16 @@
 
 .drink-item {
   display:flex;
+  flex-direction:column;
   padding: 15px;
   border: 2px solid #36666A;
-  margin:10px;
+  margin: 10px;
+  background-color: antiquewhite;
+}
+.drink-item h3 {
+  font-size: 30px;
+  position:absolute;
+  margin-left: 210px;
 }
 
  .drink-item img {
@@ -155,6 +162,9 @@
 
 .meal-item h3 {
   font-size: 30px;
+  position:absolute;
+  margin-left: 210px;
+
 }
 
 .meal-item img {
@@ -162,12 +172,27 @@
   height:200px;
 }
 .meal-details h4 {
-  
-  flex:1;
+  display:flex;
+  position:relative;
+  margin-left: 215px;
+  max-height:min-content;
 }
 
 .meal-details li {
-  flex:1;
+  margin-left:218px;
+}
+
+.meal-details h5 {
+  display:flex;
+  position:relative;
+  margin-left: 524px;
+  margin-top: min-content;
+}
+
+.meal-details p {
+  width: 650px;
+  margin-left:524px;
+  max-height:min-content;
 }
 
 .ingredients-button {
@@ -175,9 +200,8 @@
   border: 2px solid #36666A;
   background-color: #6B201D;
   color:antiquewhite;
-  height: 75px;
   width:150px;
-  margin-top:25px;
+  /*margin-top:25px;/*
   /*margin-left:-82px;*/
   display:flex;
 }
