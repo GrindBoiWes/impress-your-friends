@@ -151,26 +151,31 @@
 
 
       <!-- Random drink button -->
-      <button class="js-modal-trigger" data-target="modal-js-drink" id="randomDrinkName">
+      <button class="js-modal-trigger" data-target="modal-js-random" id="randomDrinkName">
         Want a drink?
+      </button>
+      <!-- Random meal button -->
+      <button class="js-modal-trigger" data-target="modal-js-random" id="randomMealName">
+        Want a meal?
       </button>
 
 
-      <!-- Pop up of drink -->
-      <div id="modal-js-drink" class="modal">
+      <!-- Pop up of drink/meal -->
+      <div id="modal-js-random" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
             <button id="randomDrinkName2" class="button is-info">New Drink?</button>
+            <button id="randomMealName2" class="button is-info">New Meal?</button>
           </header>
           <section class="modal-card-body">
-            <h1 class="title" id="randomDrinkTitle">Random Cocktail</h1>
-            <img id="randomDrinkImg" src="">
+            <h1 class="title" id="randomTitle">Random Cocktail</h1>
+            <img id="randomImg" src="">
             <h2 class="subtitle"> Ingredients </h2>
-            <ul id="randomDrinkIngredients"></ul>
+            <ul id="randomIngredients"></ul>
             <br>
             <h2 class="subtitle"> Instructions </h2>
-            <ol id="drinkInstructions"></ol>
+            <ol id="Instructions"></ol>
           </section>
           <footer class="modal-card-foot">
             <button class="button is-success" id="saveDrinkButton">Save </button>
@@ -182,35 +187,9 @@
 
 
 
-      <!-- Random meal button -->
-      <button class="js-modal-trigger" data-target="modal-js-meal" id="randomMealName">
-        Want a meal?
-      </button>
+      
 
-
-      <!-- Pop up of meal -->
-      <div id="modal-js-meal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <button id="randomMealName2" class="button is-info">New Meal?</button>
-          </header>
-          <section class="modal-card-body">
-            <h1 class="title" id="randomMealTitle">Random Meal</h1>
-            <img id="randomMealImg" src="">
-            <h2 class="subtitle"> Ingredients </h2>
-            <ul id="randomMealIngredients"></ul>
-            <br>
-            <h2 class="subtitle"> Instructions </h2>
-            <ol id="mealInstructions"></ol>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success">Save recipe</button>
-            <button class="button">Cancel</button>
-          </footer>
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-      </div>
+      
 
       <!--Main Section Styling Under Buttons-->
 
