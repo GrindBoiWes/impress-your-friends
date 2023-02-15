@@ -42,6 +42,7 @@ fetchCocktail();
 
 });
 
+// Random drink button in modal
 document.getElementById("randomDrinkName2").addEventListener("click", function() {
   this.textContent = "New drink?"
   
@@ -127,6 +128,7 @@ fetchMeal()
 
 });
 
+// Random meal button in modal
 document.getElementById("randomMealName2").addEventListener("click", function() {
   // this.textContent = "changed"
   
@@ -202,6 +204,7 @@ function fetchMeal() {
 
     };
   
+// Able to switch between functions if it's a meal or drink
 function processData(data) {
   if (typeof data.drinks !== 'undefined') {
     processDrink(data);
