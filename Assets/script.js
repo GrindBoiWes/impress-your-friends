@@ -42,12 +42,14 @@ fetchCocktail();
 
 });
 
+// Random drink button in modal
 document.getElementById("randomDrinkName2").addEventListener("click", function() {
   this.textContent = "New drink?"
   
 fetchCocktail();
 
 });
+
 
 
 function fetchCocktail() {
@@ -59,21 +61,24 @@ function fetchCocktail() {
   })
   
   .then(function(data){
+    processData(data)
+})
+};
 
-   
+  function processDrink(data){
     console.log(data);
   var drink = data.drinks[0];
     // Displays drink name
-    randomDrinkName = document.getElementById("randomDrinkTitle");
+    randomDrinkName = document.getElementById("randomTitle");
     randomDrinkName.textContent = drink.strDrink;
 
     // Displays drink image
-    randomDrinkImg = document.getElementById("randomDrinkImg");
+    randomDrinkImg = document.getElementById("randomImg");
     randomDrinkImg.src = drink.strDrinkThumb;
     randomDrinkImg.style.width = "75%";
 
     // Displays instructions to make drink, and will clear out previous steps
-    randomDrinkSteps = document.getElementById("drinkInstructions");
+    randomDrinkSteps = document.getElementById("Instructions");
     randomDrinkSteps.textContent = ""
     
     // Loop to turn instructions into an array, and display as a numbered list
@@ -93,7 +98,7 @@ function fetchCocktail() {
                        
 
     // Clears out the ingredient list
-    randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
+    randomDrinkIngredients = document.getElementById("randomIngredients");
     randomDrinkIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
@@ -109,9 +114,8 @@ function fetchCocktail() {
   } 
 }
 
-    }
-  )
-};
+    };
+  
 
 
 
@@ -119,14 +123,18 @@ function fetchCocktail() {
 document.getElementById("randomMealName").addEventListener("click", function() {
   // this.textContent = "changed"
   
-fetchMeal();
+fetchMeal()
+  
 
 });
 
+// Random meal button in modal
 document.getElementById("randomMealName2").addEventListener("click", function() {
   // this.textContent = "changed"
   
-fetchMeal();
+  fetchMeal()
+  
+  
 
 });
 
@@ -138,23 +146,31 @@ function fetchMeal() {
   .then(function (response) {
     return response.json();
   })
+  .then(function (data) {
+    processData(data)
+  })
+};
   
-  .then(function(data){
+
+  
+
+
+  function processMeal(data){
 
    
     console.log(data);
   var meal = data.meals[0];
     // Displays meal name
-    randomMealName = document.getElementById("randomMealTitle");
+    randomMealName = document.getElementById("randomTitle");
     randomMealName.textContent = meal.strMeal;
  console.log(meal.strMeal)
     // Displays meal image
-    randomMealImg = document.getElementById("randomMealImg");
+    randomMealImg = document.getElementById("randomImg");
     randomMealImg.src = meal.strMealThumb;
     randomMealImg.style.width = "75%";
 
     // Displays instructions to make meal
-    randomMealSteps = document.getElementById("mealInstructions");
+    randomMealSteps = document.getElementById("Instructions");
     randomMealSteps.textContent = ""
 
     var mealInstructions = meal.strInstructions.split(".");
@@ -170,7 +186,7 @@ function fetchMeal() {
     }
 
     // Clears out the ingredient list
-    randomMealIngredients = document.getElementById("randomMealIngredients");
+    randomMealIngredients = document.getElementById("randomIngredients");
     randomMealIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
@@ -186,9 +202,17 @@ function fetchMeal() {
   } 
 }
 
-    }
-  )
-};
+    };
+  
+// Able to switch between functions if it's a meal or drink
+function processData(data) {
+  if (typeof data.drinks !== 'undefined') {
+    processDrink(data);
+  } else if (typeof data.meals !== 'undefined') {
+    processMeal(data);
+  }
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -242,14 +266,17 @@ document.addEventListener('DOMContentLoaded', () => {
 const resultsList = document.querySelector('#results-list');
 
 
+function fetchData(foodType, mealId) {
 
-function fetchData(foodType) {
-fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
+  
+  
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
     .then(response => response.json())
     .then(data => {
       displayData(data);
+
     })
-    
+      
 };
 
 function fetchDataDrinks(drinkType) {
