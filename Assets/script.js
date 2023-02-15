@@ -1,4 +1,4 @@
-// code to display modal message for age verification
+// // code to display modal message for age verification
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 var message = document.getElementById("modal-message");
@@ -51,6 +51,15 @@ fetchCocktail();
 });
 
 
+saveBtn = document.getElementById("saveButton")   
+// saveBtn.addEventListener("click", saveToStorage(data))   
+// // Do localstorage here
+//   function saveToStorage(data) {
+//     console.log("hey i'm here")
+//     console.log(data)
+//   }
+
+
 
 function fetchCocktail() {
   var randomCocktailApi = "https://www.thecocktaildb.com/api/json/v2/9973533/random.php"
@@ -61,12 +70,28 @@ function fetchCocktail() {
   })
   
   .then(function(data){
-    processData(data)
+    processData(data);
+    saveBtn.addEventListener("click", function() {
+    saveDataToLocalStorage(data);
 })
+  })
 };
 
+
+function saveDataToLocalStorage(data) {
+  var storedData = JSON.parse(localStorage.getItem('drinkData')) || [];
+console.log(storedData)
+  // Add the new meal data to the stored data array
+  storedData.push(data);
+
+  // Save the updated data to local storage
+  localStorage.setItem('drinkData', JSON.stringify(storedData));
+}
+
+
   function processDrink(data){
-    console.log(data);
+  
+    // console.log(data);
   var drink = data.drinks[0];
     // Displays drink name
     randomDrinkName = document.getElementById("randomTitle");
@@ -88,14 +113,15 @@ function fetchCocktail() {
         break;
       }
       var listItem = document.createElement("li");
-      console.log(drinkInstructions) 
+      // console.log(drinkInstructions) 
       listItem.textContent = drinkInstructions[i];
       randomDrinkSteps.appendChild(listItem);
       
     }
      
-    
-                       
+    // Add eventclicklistener, on save button, pass data
+       
+             
 
     // Clears out the ingredient list
     randomDrinkIngredients = document.getElementById("randomIngredients");
@@ -212,6 +238,7 @@ function processData(data) {
     processMeal(data);
   }
 }
+
 
 
 
