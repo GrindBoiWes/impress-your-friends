@@ -42,12 +42,14 @@ fetchCocktail();
 
 });
 
+// Random drink button in modal
 document.getElementById("randomDrinkName2").addEventListener("click", function() {
   this.textContent = "New drink?"
   
 fetchCocktail();
 
 });
+
 
 
 function fetchCocktail() {
@@ -59,21 +61,24 @@ function fetchCocktail() {
   })
   
   .then(function(data){
+    processData(data)
+})
+};
 
-   
+  function processDrink(data){
     console.log(data);
   var drink = data.drinks[0];
     // Displays drink name
-    randomDrinkName = document.getElementById("randomDrinkTitle");
+    randomDrinkName = document.getElementById("randomTitle");
     randomDrinkName.textContent = drink.strDrink;
 
     // Displays drink image
-    randomDrinkImg = document.getElementById("randomDrinkImg");
+    randomDrinkImg = document.getElementById("randomImg");
     randomDrinkImg.src = drink.strDrinkThumb;
     randomDrinkImg.style.width = "75%";
 
     // Displays instructions to make drink, and will clear out previous steps
-    randomDrinkSteps = document.getElementById("drinkInstructions");
+    randomDrinkSteps = document.getElementById("Instructions");
     randomDrinkSteps.textContent = ""
     
     // Loop to turn instructions into an array, and display as a numbered list
@@ -93,7 +98,7 @@ function fetchCocktail() {
                        
 
     // Clears out the ingredient list
-    randomDrinkIngredients = document.getElementById("randomDrinkIngredients");
+    randomDrinkIngredients = document.getElementById("randomIngredients");
     randomDrinkIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
@@ -109,9 +114,8 @@ function fetchCocktail() {
   } 
 }
 
-    }
-  )
-};
+    };
+  
 
 
 
@@ -119,14 +123,18 @@ function fetchCocktail() {
 document.getElementById("randomMealName").addEventListener("click", function() {
   // this.textContent = "changed"
   
-fetchMeal();
+fetchMeal()
+  
 
 });
 
+// Random meal button in modal
 document.getElementById("randomMealName2").addEventListener("click", function() {
   // this.textContent = "changed"
   
-fetchMeal();
+  fetchMeal()
+  
+  
 
 });
 
@@ -138,23 +146,31 @@ function fetchMeal() {
   .then(function (response) {
     return response.json();
   })
+  .then(function (data) {
+    processData(data)
+  })
+};
   
-  .then(function(data){
+
+  
+
+
+  function processMeal(data){
 
    
     console.log(data);
   var meal = data.meals[0];
     // Displays meal name
-    randomMealName = document.getElementById("randomMealTitle");
+    randomMealName = document.getElementById("randomTitle");
     randomMealName.textContent = meal.strMeal;
  console.log(meal.strMeal)
     // Displays meal image
-    randomMealImg = document.getElementById("randomMealImg");
+    randomMealImg = document.getElementById("randomImg");
     randomMealImg.src = meal.strMealThumb;
     randomMealImg.style.width = "75%";
 
     // Displays instructions to make meal
-    randomMealSteps = document.getElementById("mealInstructions");
+    randomMealSteps = document.getElementById("Instructions");
     randomMealSteps.textContent = ""
 
     var mealInstructions = meal.strInstructions.split(".");
@@ -170,7 +186,7 @@ function fetchMeal() {
     }
 
     // Clears out the ingredient list
-    randomMealIngredients = document.getElementById("randomMealIngredients");
+    randomMealIngredients = document.getElementById("randomIngredients");
     randomMealIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
@@ -186,9 +202,17 @@ function fetchMeal() {
   } 
 }
 
-    }
-  )
-};
+    };
+  
+// Able to switch between functions if it's a meal or drink
+function processData(data) {
+  if (typeof data.drinks !== 'undefined') {
+    processDrink(data);
+  } else if (typeof data.meals !== 'undefined') {
+    processMeal(data);
+  }
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -239,30 +263,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Buttons for dropdown menu located in the navbar  Wes Section
 
-
 const resultsList = document.querySelector('#results-list');
 
 
+function fetchData(foodType, mealId) {
 
-function fetchData(foodType) {
+  
+  
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
     .then(response => response.json())
     .then(data => {
-      displayData(data)
+      displayData(data);
+
     })
-    
+      
 };
 
 function fetchDataDrinks(drinkType) {
   // Added if statement due to non-alcoholic being a different parameter
   if (drinkType === 'non-alcoholic') {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
     .then(response => response.json())
     .then(data => {
       displayData(data);
     })
   } else {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkType}`)
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkType)
     .then(response => response.json())
     .then(data => {
       displayData(data);
@@ -271,14 +297,35 @@ function fetchDataDrinks(drinkType) {
 };
 
 
-
-const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+ const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
 const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
+
+function displayIngredients(recipeId) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`)
+    .then(response => response.json())
+    .then(data => {
+      const recipe = data.meals[0];
+      const ingredients = [];
+
+      // Collect the ingredients and their measurements
+      for (let i = 1; i <= 20; i++) {
+        if (recipe[`strIngredient${i}`]) {
+          ingredients.push(`${recipe[`strIngredient${i}`]} (${recipe[`strMeasure${i}`]})`);
+        } else {
+          break;
+        }
+      }
+
+      // Display the ingredients in a modal or alert
+      const ingredientsList = ingredients.join('\n');
+      alert(`Ingredients for ${recipe.strMeal}:\n${ingredientsList}`);
+    });
+}
 
 foodDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const foodType = event.target.dataset.food;
-    fetchData(foodType);
+   fetchData(foodType);
     console.log(foodType)
   });
 });
@@ -286,6 +333,7 @@ foodDropdownItems.forEach(item => {
 drinkDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const drinkType = event.target.dataset.drinks;
+
     fetchDataDrinks(drinkType);
     console.log(drinkType);
   });
@@ -295,30 +343,79 @@ function displayData(data) {
   resultsList.innerHTML = '';
   if (data.meals) {
     // display meal data
-    data.meals.forEach(meal => {
+    data.meals.slice(0, 10).forEach(meal => {
       const mealItem = document.createElement('div');
       mealItem.classList.add('meal-item');
       mealItem.innerHTML = `
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
         <h3>${meal.strMeal}</h3>
+        <button class="ingredients-button" data-meal-id="${meal.idMeal}">Ingredients & Instructions</button>
       `;
       resultsList.appendChild(mealItem);
     });
   } else if (data.drinks) {
     // display drink data
-    data.drinks.forEach(drink => {
+    data.drinks.slice(0, 10).forEach(drink => {
       const drinkItem = document.createElement('div');
       drinkItem.classList.add('drink-item');
       drinkItem.innerHTML = `
         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
         <h3>${drink.strDrink}</h3>
+        <button class="ingredients-button" data-drink-id="${drink.idDrink}">Ingredients & Instructions</button>
       `;
       resultsList.appendChild(drinkItem);
     });
   } else {
     resultsList.innerHTML = 'No results found.';
   }
-};
+
+  const ingredientsButtons = document.querySelectorAll('.ingredients-button');
+  ingredientsButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const mealId = event.target.dataset.mealId;
+      const drinkId = event.target.dataset.drinkId;
+      let fetchUrl = '';
+
+      if (mealId) {
+        fetchUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+      } else if (drinkId) {
+        fetchUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
+      }
+
+      if (fetchUrl) {
+        fetch(fetchUrl)
+          .then(response => response.json())
+          .then(data => {
+            const instructions = data.meals ? data.meals[0].strInstructions : data.drinks[0].strInstructions;
+            const ingredients = [];
+
+            for (let i = 1; i <= 20; i++) {
+              const ingredient = data.meals ? data.meals[0][`strIngredient${i}`] : data.drinks[0][`strIngredient${i}`];
+              const measure = data.meals ? data.meals[0][`strMeasure${i}`] : data.drinks[0][`strMeasure${i}`];
+
+              if (ingredient) {
+                ingredients.push(`${ingredient} - ${measure}`);
+              }
+            }
+
+            const mealItem = event.target.parentElement;
+            const details = document.createElement('div');
+            details.classList.add('meal-details');
+            details.innerHTML = `
+              <h4>Ingredients:</h4>
+              <ul>
+                ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+              </ul>
+              <h5>Instructions:</h5>
+              <p>${instructions}</p>
+            `;
+            mealItem.appendChild(details);
+          });
+      }
+    });
+  });
+}
+
 
 const dropItem = document.querySelectorAll('.dropdown-item');
 dropItem.forEach(button => {
@@ -335,7 +432,10 @@ dropItem.forEach(button => {
     const drinkType = event.target.dataset.drinks;
     fetchData(drinkType);
   });
-});
-// End Wes Section
+}); 
+
+
+//End Wes Section
+
 
 

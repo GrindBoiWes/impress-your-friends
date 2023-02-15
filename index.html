@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bulma Navigation Tutorial</title>
+  <title>Impress Your Friends</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
 
 <body>
 
-  <!--Navbar Section-->
 
   <body onload="showModal()">
 
@@ -31,15 +30,9 @@
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
-            <img id="logo" src="./Assets/images/wine-gif.gif" alt="Gif of wine in glass">
             <a class="main-title" href="#" style="font-weight:bold;">
               Impress Your Friends
             </a>
-            <span class="navbar-burger burger" data-target="navMenu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
           </div>
         <div class = "menu-title">
           <div class="dropdown-saved">
@@ -53,7 +46,7 @@
                 <a href="#" class="dropdown-item" data-food="beef">
                   Beef
                 </a>
-                <a class="dropdown-item" data-food="chicken">
+                <a href="#" class="dropdown-item" data-food="chicken">
                   Chicken
                 </a>
                 <a href="#" class="dropdown-item" data-food="seafood">
@@ -79,7 +72,7 @@
                 <a href="#" class="dropdown-item" data-drinks="whiskey">
                   Whiskey
                 </a>
-                <a class="dropdown-item" data-drinks="rum">
+                <a href="#" class="dropdown-item"  data-drinks="rum">
                   Rum
                 </a>
                 <a href="#" class="dropdown-item" data-drinks="vodka">
@@ -105,8 +98,8 @@
                 <a href="#" class="dropdown-item">
                   This food
                 </a>
-                <a class="dropdown-item">
-                  That food
+                <a href="#" class="dropdown-item">
+                  <button>That food</button>
                 </a>
                 <a href="#" class="dropdown-item">
                   More Food
@@ -201,9 +194,8 @@
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-  
   <!--Main Section Styling Under Buttons-->
-<h1 class="title">Check out these Featured Eats and Drinks:</h1>
+  <h1 class="title">Check out these Featured Eats and Drinks:</h1>
   <main id="main-section"> 
 
     <div id="first-three-img">
@@ -348,19 +340,18 @@
     </div>
 </div>
 
-
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
-<script src="./Assets/script.js">
-  (function () {
-    var burger = document.querySelector('.burger');
-    var nav = document.querySelector('#' + burger.dataset.target);
-    burger.addEventListener('click', function () {
-      burger.classList.toggle('is-active');
-      nav.classList.toggle('is-active');
-    });
-  })();
-</script>
+  <script src="./Assets/script.js">
+    (function () {
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
+  </script>
 </body>
 
 </html>
