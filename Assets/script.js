@@ -322,7 +322,7 @@ function displayData(data) {
       mealItem.innerHTML = `
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
         <h3>${meal.strMeal}</h3>
-        <button class="ingredients-button" data-meal-id="${meal.idMeal}">View Ingredients & Instructions</button>
+        <button class="ingredients-button" data-meal-id="${meal.idMeal}">Ingredients & Instructions</button>
       `;
       resultsList.appendChild(mealItem);
     });
@@ -334,7 +334,7 @@ function displayData(data) {
       drinkItem.innerHTML = `
         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
         <h3>${drink.strDrink}</h3>
-        <button class="ingredients-button" data-drink-id="${drink.idDrink}">View Ingredients & Instructions</button>
+        <button class="ingredients-button" data-drink-id="${drink.idDrink}">Ingredients & Instructions</button>
       `;
       resultsList.appendChild(drinkItem);
     });

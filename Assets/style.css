@@ -48,6 +48,7 @@
     color:antiquewhite;
     align-items: center;
     font-family: 'Quicksand', sans-serif;
+    padding:50px;
 
 }
  .navbar-item {
@@ -81,14 +82,22 @@
 .menu-title {
     display:flex;
     justify-content: space-between;
-    margin-right: 10px;
-    padding: 20px;
+    margin-left:22px;
+    padding: 74px;
+}
+ span {
+  font-size:30px;
+  
+ }
+.dropdown-saved {
+  margin-right: 10px;
 }
 
  .dropdown-menu {
     display: none;
     position: sticky;
     z-index: 1;
+    font-size: 30px;
     
   }
   
@@ -105,7 +114,7 @@
   }
   .dropdown-content a:hover {
     background-color: #36666A;
-    color:antiquewhite;
+    color:#faebd7;
   }
   .dropdown-content a {
     color:antiquewhite;
@@ -117,7 +126,7 @@
   }
 
 .results-list {
-  display:block;
+  display:inline-flex;
   padding: 10px 10px;
   justify-content: space-between;
 }
@@ -136,16 +145,44 @@
 
 .meal-item {
   display:flex;
+  flex-direction:column;
   padding: 15px;
   border: 2px solid #36666A;
   margin: 10px;
+  background-color: antiquewhite;
+  
+}
+
+.meal-item h3 {
+  font-size: 30px;
 }
 
 .meal-item img {
   width:200px;
   height:200px;
 }
+.meal-details h4 {
+  
+  flex:1;
+}
 
+.meal-details li {
+  flex:1;
+}
+
+.ingredients-button {
+  text-decoration: none;
+  border: 2px solid #36666A;
+  background-color: #6B201D;
+  color:antiquewhite;
+  height: 75px;
+  width:150px;
+  margin-top:25px;
+  /*margin-left:-82px;*/
+  display:flex;
+}
+
+/* End Nav Section */
 
   #footer {
     display: flex;
