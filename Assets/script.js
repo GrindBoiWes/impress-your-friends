@@ -4,7 +4,7 @@ var span = document.getElementsByClassName("close")[0];
 var message = document.getElementById("modal-message");
 var content = document.getElementById("content");
 
-window.onload = function() {
+window.onload = function () {
   var name = prompt("Please enter your name:");
   var ageCheck = parseInt(prompt("Please enter your age:"));
 
@@ -24,88 +24,94 @@ window.onload = function() {
   }
 };
 
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
 };
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
 
+
+var savedRecipes = []
+saveBtn = document.getElementById("saveButton")
+
 // Random drink button
-document.getElementById("randomDrinkName").addEventListener("click", function() {
-  // this.textContent = "changed"
-  
-fetchCocktail();
+document.getElementById("randomDrinkName").addEventListener("click", function () {
+
+
+  fetchCocktail();
 
 });
 
 // Random drink button in modal
-document.getElementById("randomDrinkName2").addEventListener("click", function() {
+document.getElementById("randomDrinkName2").addEventListener("click", function () {
   this.textContent = "New drink?"
-  
-fetchCocktail();
+
+  fetchCocktail();
 
 });
 
 
-saveBtn = document.getElementById("saveButton")   
-// saveBtn.addEventListener("click", saveToStorage(data))   
-// // Do localstorage here
-//   function saveToStorage(data) {
-//     console.log("hey i'm here")
-//     console.log(data)
-//   }
+
+
 
 
 
 function fetchCocktail() {
   var randomCocktailApi = "https://www.thecocktaildb.com/api/json/v2/9973533/random.php"
-  
+  data = null;
   fetch(randomCocktailApi)
-  .then(function (response) {
-    return response.json();
-  })
-  
-  .then(function(data){
-    processData(data);
-    saveBtn.addEventListener("click", function() {
-    saveDataToLocalStorage(data);
-})
-  })
+    .then(function (response) {
+      return response.json();
+    })
+
+    .then(function (data) {
+      processData(data);
+      saveBtn.addEventListener("click", function () {
+        saveDataToLocalStorage(data);
+
+
+
+      })
+    })
 };
 
 
 function saveDataToLocalStorage(data) {
-  var storedData = JSON.parse(localStorage.getItem('drinkData')) || [];
-console.log(storedData)
-  // Add the new meal data to the stored data array
-  storedData.push(data);
 
   // Save the updated data to local storage
-  localStorage.setItem('drinkData', JSON.stringify(storedData));
+  localStorage.setItem('drinkData', JSON.stringify(data));
+
 }
 
+// Function to grab drink data in local storage and display in saved recipe modal
+function getDrinkStorageData() {
+  var drinkData = JSON.parse(localStorage.getItem('drinkData'));
 
-  function processDrink(data){
-  
-    // console.log(data);
-  var drink = data.drinks[0];
+  savedRecipes.push(drinkData)
+
+
+
+  if (drinkData) {
+
+    var drink = drinkData.drinks[0];
+
     // Displays drink name
-    randomDrinkName = document.getElementById("randomTitle");
-    randomDrinkName.textContent = drink.strDrink;
+    savedDrinkName = document.getElementById("savedTitle");
+    savedDrinkName.textContent = drink.strDrink
 
     // Displays drink image
-    randomDrinkImg = document.getElementById("randomImg");
-    randomDrinkImg.src = drink.strDrinkThumb;
-    randomDrinkImg.style.width = "75%";
+    savedDrinkImg = document.getElementById("savedImg");
+    savedDrinkImg.src = drink.strDrinkThumb;
+    savedDrinkImg.style.width = "75%";
 
     // Displays instructions to make drink, and will clear out previous steps
-    randomDrinkSteps = document.getElementById("Instructions");
-    randomDrinkSteps.textContent = ""
-    
+    savedDrinkSteps = document.getElementById("savedInstructions");
+    savedDrinkSteps.textContent = ""
+
     // Loop to turn instructions into an array, and display as a numbered list
     var drinkInstructions = drink.strInstructions.split(".");
     for (var i = 0; i < drinkInstructions.length; i++) {
@@ -113,123 +119,303 @@ console.log(storedData)
         break;
       }
       var listItem = document.createElement("li");
-      // console.log(drinkInstructions) 
       listItem.textContent = drinkInstructions[i];
-      randomDrinkSteps.appendChild(listItem);
-      
+      savedDrinkSteps.appendChild(listItem);
+
     }
-     
-    // Add eventclicklistener, on save button, pass data
-       
-             
+
+
+
 
     // Clears out the ingredient list
-    randomDrinkIngredients = document.getElementById("randomIngredients");
-    randomDrinkIngredients.textContent = ""
+    savedDrinkIngredients = document.getElementById("savedIngredients");
+    savedDrinkIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
     for (var i = 1; i < 15; i++) {
-      var randomMeasure = data.drinks[0]["strMeasure" + i];
-      var randomIngredient = data.drinks[0]["strIngredient" + i];
-      if (randomIngredient !=null && randomMeasure != null) {
-       var listItem = document.createElement("li");
-      listItem.textContent = randomMeasure + " " + randomIngredient;
-      randomDrinkIngredients.appendChild(listItem);
-  } else{
-    break;
-  } 
+      var savedMeasure = drinkData.drinks[0]["strMeasure" + i];
+      var savedIngredient = drinkData.drinks[0]["strIngredient" + i];
+      if (savedIngredient != null && savedMeasure != null) {
+        var listItem = document.createElement("li");
+        listItem.textContent = savedMeasure + " " + savedIngredient;
+        savedDrinkIngredients.appendChild(listItem);
+      } else {
+        break;
+      }
+    }
+
+
+  }
 }
 
-    };
-  
+// Function to grab meal data in local storage and display in saved recipe modal
+function getMealStorageData() {
+  var mealData = JSON.parse(localStorage.getItem('mealData'));
+
+  console.log(mealData)
 
 
-
-// Random meal button
-document.getElementById("randomMealName").addEventListener("click", function() {
-  // this.textContent = "changed"
-  
-fetchMeal()
-  
-
-});
-
-// Random meal button in modal
-document.getElementById("randomMealName2").addEventListener("click", function() {
-  // this.textContent = "changed"
-  
-  fetchMeal()
-  
-  
-
-});
-
-function fetchMeal() {
-  var randomMealApi = "https://www.themealdb.com/api/json/v1/1/random.php"
-  
-  
-  fetch(randomMealApi)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    processData(data)
-  })
-};
-  
-
-  
+  if (mealData) {
 
 
-  function processMeal(data){
-
-   
-    console.log(data);
-  var meal = data.meals[0];
+    var meal = mealData.meals[0];
+    console.log(mealData)
     // Displays meal name
-    randomMealName = document.getElementById("randomTitle");
-    randomMealName.textContent = meal.strMeal;
- console.log(meal.strMeal)
-    // Displays meal image
-    randomMealImg = document.getElementById("randomImg");
-    randomMealImg.src = meal.strMealThumb;
-    randomMealImg.style.width = "75%";
+    savedMealName = document.getElementById("savedTitle");
+    savedMealName.textContent = meal.strMeal
 
-    // Displays instructions to make meal
-    randomMealSteps = document.getElementById("Instructions");
-    randomMealSteps.textContent = ""
+    // Displays drink image
+    savedMealImg = document.getElementById("savedImg");
+    savedMealImg.src = meal.strMealThumb;
+    savedMealImg.style.width = "75%";
 
+    // Displays instructions to make drink, and will clear out previous steps
+    savedMealSteps = document.getElementById("savedInstructions");
+    savedMealSteps.textContent = ""
+
+    // Loop to turn instructions into an array, and display as a numbered list
     var mealInstructions = meal.strInstructions.split(".");
     for (var i = 0; i < mealInstructions.length; i++) {
       if (mealInstructions[i].trim() === "") {
         break;
       }
       var listItem = document.createElement("li");
-      console.log(mealInstructions) 
+      // console.log(drinkInstructions) 
       listItem.textContent = mealInstructions[i];
-      randomMealSteps.appendChild(listItem);
-      
+      savedMealSteps.appendChild(listItem);
+
     }
 
+    // Add eventclicklistener, on save button, pass data
+
+
+
     // Clears out the ingredient list
-    randomMealIngredients = document.getElementById("randomIngredients");
-    randomMealIngredients.textContent = ""
+    savedMealIngredients = document.getElementById("savedIngredients");
+    savedMealIngredients.textContent = ""
 
     // Loop to go through ingredients and measurements. Will also create a list
-    for (var i = 1; i < 20; i++) {
-      var randomMeasure = meal["strMeasure" + i];
-      var randomIngredient = meal["strIngredient" + i];
-      if (randomIngredient !=null && randomMeasure != null) {
-       var listItem = document.createElement("li");
-      listItem.textContent = randomMeasure + " " + randomIngredient;
-      randomMealIngredients.appendChild(listItem);
-  } else{
-    break;
-  } 
+    for (var i = 1; i < 15; i++) {
+      var savedMeasure = mealData.meals[0]["strMeasure" + i];
+      var savedIngredient = mealData.meals[0]["strIngredient" + i];
+      if (savedIngredient != null && savedMeasure != null) {
+        var listItem = document.createElement("li");
+        listItem.textContent = savedMeasure + " " + savedIngredient;
+        savedMealIngredients.appendChild(listItem);
+      } else {
+        break;
+      }
+    }
+
+
+  }
 }
 
-    };
-  
+function processDrink(data) {
+
+  // console.log(data);
+  var drink = data.drinks[0];
+  // Displays drink name
+  randomDrinkName = document.getElementById("randomTitle");
+  randomDrinkName.textContent = drink.strDrink;
+
+  // Displays drink image
+  randomDrinkImg = document.getElementById("randomImg");
+  randomDrinkImg.src = drink.strDrinkThumb;
+  randomDrinkImg.style.width = "75%";
+
+  // Displays instructions to make drink, and will clear out previous steps
+  randomDrinkSteps = document.getElementById("Instructions");
+  randomDrinkSteps.textContent = ""
+
+  // Loop to turn instructions into an array, and display as a numbered list
+  var drinkInstructions = drink.strInstructions.split(".");
+  for (var i = 0; i < drinkInstructions.length; i++) {
+    if (drinkInstructions[i].trim() === "") {
+      break;
+    }
+    var listItem = document.createElement("li");
+    // console.log(drinkInstructions) 
+    listItem.textContent = drinkInstructions[i];
+    randomDrinkSteps.appendChild(listItem);
+
+  }
+
+
+
+
+  // Clears out the ingredient list
+  randomDrinkIngredients = document.getElementById("randomIngredients");
+  randomDrinkIngredients.textContent = ""
+
+  // Loop to go through ingredients and measurements. Will also create a list
+  for (var i = 1; i < 15; i++) {
+    var randomMeasure = data.drinks[0]["strMeasure" + i];
+    var randomIngredient = data.drinks[0]["strIngredient" + i];
+    if (randomIngredient != null && randomMeasure != null) {
+      var listItem = document.createElement("li");
+      listItem.textContent = randomMeasure + " " + randomIngredient;
+      randomDrinkIngredients.appendChild(listItem);
+    } else {
+      break;
+    }
+  }
+
+};
+
+
+var savedDrinkBtn = document.getElementById("savedDrink")
+savedDrinkBtn.addEventListener("click", function () {
+  getDrinkStorageData();
+});
+var savedMealBtn = document.getElementById("savedMeal")
+savedMealBtn.addEventListener("click", function () {
+  getMealStorageData();
+});
+function processSaved(data) {
+
+  // console.log(data);
+  var drink = data.drinks[0];
+  // Displays drink name
+  randomDrinkName = document.getElementById("savedTitle");
+  randomDrinkName.textContent = drink.strDrink;
+
+  // Displays drink image
+  randomDrinkImg = document.getElementById("savedImg");
+  randomDrinkImg.src = drink.strDrinkThumb;
+  randomDrinkImg.style.width = "75%";
+
+  // Displays instructions to make drink, and will clear out previous steps
+  randomDrinkSteps = document.getElementById("savedInstructions");
+  randomDrinkSteps.textContent = ""
+
+  // Loop to turn instructions into an array, and display as a numbered list
+  var drinkInstructions = drink.strInstructions.split(".");
+  for (var i = 0; i < drinkInstructions.length; i++) {
+    if (drinkInstructions[i].trim() === "") {
+      break;
+    }
+    var listItem = document.createElement("li");
+
+    listItem.textContent = drinkInstructions[i];
+    randomDrinkSteps.appendChild(listItem);
+
+  }
+
+
+
+
+  // Clears out the ingredient list
+  randomDrinkIngredients = document.getElementById("savedIngredients");
+  randomDrinkIngredients.textContent = ""
+
+  // Loop to go through ingredients and measurements. Will also create a list
+  for (var i = 1; i < 15; i++) {
+    var randomMeasure = data.drinks[0]["strMeasure" + i];
+    var randomIngredient = data.drinks[0]["strIngredient" + i];
+    if (randomIngredient != null && randomMeasure != null) {
+      var listItem = document.createElement("li");
+      listItem.textContent = randomMeasure + " " + randomIngredient;
+      randomDrinkIngredients.appendChild(listItem);
+    } else {
+      break;
+    }
+  }
+
+};
+
+
+// Random meal button
+document.getElementById("randomMealName").addEventListener("click", function () {
+
+
+  fetchMeal()
+
+
+});
+
+// Random meal button in modal
+document.getElementById("randomMealName2").addEventListener("click", function () {
+
+
+  fetchMeal()
+
+
+
+});
+
+function fetchMeal() {
+  var randomMealApi = "https://www.themealdb.com/api/json/v1/1/random.php"
+
+
+  fetch(randomMealApi)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      processData(data);
+      saveBtn.addEventListener("click", function () {
+        localStorage.setItem('mealData', JSON.stringify(data));
+
+
+
+      })
+    })
+};
+
+
+
+
+
+function processMeal(data) {
+
+
+
+  var meal = data.meals[0];
+  // Displays meal name
+  randomMealName = document.getElementById("randomTitle");
+  randomMealName.textContent = meal.strMeal;
+  console.log(meal.strMeal)
+  // Displays meal image
+  randomMealImg = document.getElementById("randomImg");
+  randomMealImg.src = meal.strMealThumb;
+  randomMealImg.style.width = "75%";
+
+  // Displays instructions to make meal
+  randomMealSteps = document.getElementById("Instructions");
+  randomMealSteps.textContent = ""
+
+  var mealInstructions = meal.strInstructions.split(".");
+  for (var i = 0; i < mealInstructions.length; i++) {
+    if (mealInstructions[i].trim() === "") {
+      break;
+    }
+    var listItem = document.createElement("li");
+    console.log(mealInstructions)
+    listItem.textContent = mealInstructions[i];
+    randomMealSteps.appendChild(listItem);
+
+  }
+
+  // Clears out the ingredient list
+  randomMealIngredients = document.getElementById("randomIngredients");
+  randomMealIngredients.textContent = ""
+
+  // Loop to go through ingredients and measurements. Will also create a list
+  for (var i = 1; i < 20; i++) {
+    var randomMeasure = meal["strMeasure" + i];
+    var randomIngredient = meal["strIngredient" + i];
+    if (randomIngredient != null && randomMeasure != null) {
+      var listItem = document.createElement("li");
+      listItem.textContent = randomMeasure + " " + randomIngredient;
+      randomMealIngredients.appendChild(listItem);
+    } else {
+      break;
+    }
+  }
+
+};
+
 // Able to switch between functions if it's a meal or drink
 function processData(data) {
   if (typeof data.drinks !== 'undefined') {
@@ -295,36 +481,36 @@ const resultsList = document.querySelector('#results-list');
 
 function fetchData(foodType, mealId) {
 
-  
-  
+
+
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${foodType}`)
     .then(response => response.json())
     .then(data => {
       displayData(data);
 
     })
-      
+
 };
 
 function fetchDataDrinks(drinkType) {
   // Added if statement due to non-alcoholic being a different parameter
   if (drinkType === 'non-alcoholic') {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
-    .then(response => response.json())
-    .then(data => {
-      displayData(data);
-    })
+      .then(response => response.json())
+      .then(data => {
+        displayData(data);
+      })
   } else {
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkType)
-    .then(response => response.json())
-    .then(data => {
-      displayData(data);
-    });
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkType)
+      .then(response => response.json())
+      .then(data => {
+        displayData(data);
+      });
   }
 };
 
 
- const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
+const foodDropdownItems = document.querySelectorAll('#dropdown-menu-food .dropdown-item');
 const drinkDropdownItems = document.querySelectorAll('#dropdown-menu-drinks .dropdown-item');
 
 function displayIngredients(recipeId) {
@@ -352,7 +538,7 @@ function displayIngredients(recipeId) {
 foodDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const foodType = event.target.dataset.food;
-   fetchData(foodType);
+    fetchData(foodType);
     console.log(foodType)
   });
 });
@@ -459,7 +645,7 @@ dropItem.forEach(button => {
     const drinkType = event.target.dataset.drinks;
     fetchData(drinkType);
   });
-}); 
+});
 
 
 //End Wes Section

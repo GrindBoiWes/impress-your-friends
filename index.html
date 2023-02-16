@@ -98,21 +98,21 @@
                 <span>Saved Recipes</span>
               </button>
             </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
-                  This food
+            <div class="dropdown-menu savedRecipe" id="dropdown-menu" role="menu">
+              <div class="dropdown-content ">
+                <a href="#" id="savedDrink" class="dropdown-item js-modal-trigger" data-target="modal-js-saved">
+                  Saved Drink
                 </a>
-                <a href="#" class="dropdown-item">
-                  <button>That food</button>
+                <a href="#" id="savedMeal" class="dropdown-item js-modal-trigger" data-target="modal-js-saved">
+                  Save Meal
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="#" id="saved3" class="dropdown-item ">
                   More Food
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="#" id="saved4" class="dropdown-item ">
                   Yet again, food
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="#" id="saved5" class="dropdown-item " >
                   Maybe a drink
                 </a>
               </div>
@@ -155,7 +155,7 @@
       </button>
 
 
-      <!-- Pop up of drink/meal -->
+      <!-- Pop up of random drink/meal -->
       <div id="modal-js-random" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -182,14 +182,35 @@
 
 
 
-      
+      <!-- Pop up of saved drink/meal -->
+      <div id="modal-js-saved" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            
+          </header>
+          <section class="modal-card-body">
+            <h1 class="title" id="savedTitle">Random Cocktail</h1>
+            <img id="savedImg" src="">
+            <h2 class="subtitle"> Ingredients </h2>
+            <ul id="savedIngredients"></ul>
+            <br>
+            <h2 class="subtitle"> Instructions </h2>
+            <ol id="savedInstructions"></ol>
+          </section>
+          <footer class="modal-card-foot">
+            
+          </footer>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
 
       
 
       <!--Main Section Styling Under Buttons-->
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-</body>
+
       <main id="main-section">
         <div class="image-container">
           <a href="#">
@@ -234,7 +255,7 @@
       </footer>
 
       <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  </body>
+  
 
   <script src="./Assets/script.js">
     (function () {
