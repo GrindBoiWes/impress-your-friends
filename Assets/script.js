@@ -15,7 +15,7 @@ window.onload = function () {
     alert("You're not old enough to enter! Check back in when you're 21 years or older!");
   } else if (ageCheck >= 21 && ageCheck <= 100) {
     content.style.display = "block";
-    console.log(content);
+    
     message.innerHTML = "You entered that you are " + ageCheck + " years old, " + name + ". You are the legal drinking age! Welcome " + name + "!";
     modal.style.display = "block";
   } else {
@@ -152,14 +152,14 @@ function getDrinkStorageData() {
 function getMealStorageData() {
   var mealData = JSON.parse(localStorage.getItem('mealData'));
 
-  console.log(mealData)
+  
 
 
   if (mealData) {
 
 
     var meal = mealData.meals[0];
-    console.log(mealData)
+    
     // Displays meal name
     savedMealName = document.getElementById("savedTitle");
     savedMealName.textContent = meal.strMeal
@@ -180,7 +180,7 @@ function getMealStorageData() {
         break;
       }
       var listItem = document.createElement("li");
-      // console.log(drinkInstructions) 
+      
       listItem.textContent = mealInstructions[i];
       savedMealSteps.appendChild(listItem);
 
@@ -213,7 +213,7 @@ function getMealStorageData() {
 
 function processDrink(data) {
 
-  // console.log(data);
+  
   var drink = data.drinks[0];
   // Displays drink name
   randomDrinkName = document.getElementById("randomTitle");
@@ -235,7 +235,7 @@ function processDrink(data) {
       break;
     }
     var listItem = document.createElement("li");
-    // console.log(drinkInstructions) 
+    
     listItem.textContent = drinkInstructions[i];
     randomDrinkSteps.appendChild(listItem);
 
@@ -274,7 +274,6 @@ savedMealBtn.addEventListener("click", function () {
 });
 function processSaved(data) {
 
-  // console.log(data);
   var drink = data.drinks[0];
   // Displays drink name
   randomDrinkName = document.getElementById("savedTitle");
@@ -375,7 +374,7 @@ function processMeal(data) {
   // Displays meal name
   randomMealName = document.getElementById("randomTitle");
   randomMealName.textContent = meal.strMeal;
-  console.log(meal.strMeal)
+  
   // Displays meal image
   randomMealImg = document.getElementById("randomImg");
   randomMealImg.src = meal.strMealThumb;
@@ -391,7 +390,7 @@ function processMeal(data) {
       break;
     }
     var listItem = document.createElement("li");
-    console.log(mealInstructions)
+    
     listItem.textContent = mealInstructions[i];
     randomMealSteps.appendChild(listItem);
 
@@ -539,7 +538,7 @@ foodDropdownItems.forEach(item => {
   item.addEventListener('click', (event) => {
     const foodType = event.target.dataset.food;
     fetchData(foodType);
-    console.log(foodType)
+    
   });
 });
 
@@ -548,7 +547,7 @@ drinkDropdownItems.forEach(item => {
     const drinkType = event.target.dataset.drinks;
 
     fetchDataDrinks(drinkType);
-    console.log(drinkType);
+    
   });
 });
 
