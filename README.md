@@ -12,6 +12,8 @@ This app is meant to serve as a one-shop-stop to help you figure out what sounds
 
 Github : https://github.com/GrindBoiWes/impress-your-friends
 
+Website : https://grindboiwes.github.io/impress-your-friends/
+
 # Collaborators 
 
 Wes Harrison // https://github.com/GrindBoiWes
