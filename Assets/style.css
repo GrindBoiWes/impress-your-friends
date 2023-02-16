@@ -42,7 +42,7 @@
     display: none; }
 
 .navbar {
-    background-color: #6B201D;
+    background-color: #8a5b5a;
     height: 125px;
     
 }
@@ -72,7 +72,7 @@
 .button.is-info {
     background-color: antiquewhite;
     color:#6B201D;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .button {
@@ -85,10 +85,6 @@
     justify-content: center;
     align-items: center;
 }
-
- .navbar-item {
-    color:antiquewhite;
- }
 
  .menu-title {
   display:flex;
@@ -245,30 +241,22 @@
   margin-top:5px;
 }
 
-
-  #footer {
-    display: flex;
-    justify-content: space-between;
-    background-color: #6B201D;
-    justify-content: center;
-    padding: 20px 30px;
-    border-radius: 20px;
-    font-size: 1.2em;
-    text-align: center;
-    text-decoration: none;
-    margin-bottom: 20px;
-  }
+.button-area {
+  display: flex;
+  justify-content: center;
+}
 
   .first-page-buttons {
-    /* display: flex; */
+    display: flex; 
     background-color: #6B201D;
     justify-content: center;
-    padding: 20px 30px;
+    padding: 30px 30px;
     border-radius: 20px;
     font-size: 1.2em;
     text-align: center;
     text-decoration: none;
     margin-bottom: 20px;
+    display: inline-block;
   }
 
    /* Styling for main section */
@@ -288,6 +276,19 @@
   background-color: #6B201D;
   color:antiquewhite;
   margin: 0px;
+  margin: 10px auto;
+  }
+
+  .title-2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #6B201D;
+    color:antiquewhite;
+    margin: 0px;
+    margin: 10px auto;
+    margin-bottom: 0px;
   }
 
   #first-three-img, #second-three-img, #third-three-img, #fourth-three-img {
@@ -333,7 +334,18 @@
 
   
  /* Footer Content */
+ .fun-facts-section {
+  background-color: #7d2421;
+ }
+
+
+ .fun-facts {
+  background-color: white;
+ }
+
  #boxes {
+  font-family: 'Quicksand', sans-serif;;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -342,12 +354,14 @@
 
 #leftbox, #rightbox {
   position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
 }
 
 #leftbox::before, #leftbox::after, #rightbox::before, #rightbox::after {
   content: "";
   position: absolute;
-  background-image: url('./Assets/images/thought-bubble.png'); 
   background-size: contain;
 }
 
@@ -384,30 +398,25 @@
 }
 
 #leftbox, #middlebox, #rightbox {
-  position: relative;
   z-index: 1;
   background-color: transparent;
   color: black;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 28px;
+  border-radius: 10px;
   width: 33.33%;
-  background-image: url('images/thought-bubble.png');
   background-repeat: no-repeat;
   background-size: 45%;
   background-position: center;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
+  background-color: #7d2421;
+  border: 3px solid  black;
+  color: white;
 }
 
 #middlebox {
-  width: 40%;
-}
-
-#leftbox p, #middlebox p, #rightbox p {
-  margin: 0;
-  position: relative;
-  z-index: 2;
+  margin: 0 20px;
 }
 
 

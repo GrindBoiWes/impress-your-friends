@@ -30,6 +30,7 @@
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
+            <img id="logo" src="./Assets/images/wine-gif.gif" alt="Gif of wine in glass">
             <a class="main-title" href="#" style="font-weight:bold;">
               Impress Your Friends
             </a>
@@ -113,16 +114,28 @@
               </div>
             </div>
           </div>
+
+          <div class="dropdown-saved">
+            <div class="dropdown-trigger">
+              <a href="reviews.html">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
+                  <span>Reviews</span>
+                </button>
+              </a>
+            </div>
+          </div>
+
           </div>
         </div>
       </nav>
-      
+    
   <section class="section-results">
     <div class="container">
       <h1 class="title">Food and Drinks Results</h1>
       <ul id="results-list"></ul>
     </div>
-  </section> 
+
+  </section>
 
 
   <!--Main Section Under Header-->
@@ -140,8 +153,10 @@
 
 
   <!-- Random drink button -->
+
   <div class="button-outside">
   <h1 class="title">Don't Know Where to Start? Press the Buttons Below!</h1>
+  <div class="button-area">
   <div class="first-page-buttons">
   <button class="js-modal-trigger" data-target="modal-js-drink" id="randomDrinkName">
     Want a drink?
@@ -193,9 +208,10 @@
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
+</div>
 
   <!--Main Section Styling Under Buttons-->
-  <h1 class="title">Check out these Featured Eats and Drinks:</h1>
+  <h1 class="title-2">Check out these Featured Eats and Drinks:</h1>
   <main id="main-section"> 
 
 
@@ -327,8 +343,11 @@
   </main>
 
   <!-- Footer Section-->
-  <div id = "boxes">
-     
+<section class="fun-facts-section">
+  <div class="fun-facts">
+  <h1 class="title-2">FUN FACTS:</h1>
+
+  <div id = "boxes">     
     <div id = "leftbox">
         There are approx. 49 million bubbles in a bottle of champagne!
     </div>
@@ -341,7 +360,8 @@
         Clinking glasses to good health is typically known as a ‘toast,’ but why is that? Well, the term originated in Ancient Rome when a piece of toasted bread was dropped into wine before it was drunk.
     </div>
 </div>
-
+</div>
+</section>
 
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
@@ -357,6 +377,7 @@
       });
     })();
   </script>
+  </div>
 </body>
 
 </html>
