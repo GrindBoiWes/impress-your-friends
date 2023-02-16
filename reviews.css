@@ -1,0 +1,97 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1, h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+#review-text { 
+  border: 2px solid black;
+}
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+input[type="file"] {
+  margin-bottom: 2rem;
+}
+
+button[type="submit"] {
+  padding: 1rem 2rem;
+  background-color: #6B201D;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #c75f51;
+}
+
+#reviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#reviews div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  text-align: center;
+}
+
+#reviews img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.form-style {
+  background-color: #6B201D;
+  font-family: 'Quicksand', sans-serif;
+}
