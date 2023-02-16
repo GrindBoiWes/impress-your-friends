@@ -13,30 +13,28 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
-<body>
 
-  <!--Navbar Section-->
 
-  <!--<body onload="showModal()-->
-  <body>
+
+  <body onload="showModal()">
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <p id="modal-message"></p>
       </div>
     </div>
-
+  
     <div id="content">
 
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
-
+            <img id="logo" src="./Assets/images/wine-gif.gif" alt="Gif of wine in glass">
             <a class="main-title" href="#" style="font-weight:bold;">
               Impress Your Friends
             </a>
           </div>
-
         <div class = "menu-title">
           <div class="dropdown-saved">
             <div class="dropdown-trigger">
@@ -64,7 +62,6 @@
               </div>
             </div>
           </div>
-
           <div class="dropdown-saved">
             <div class="dropdown-trigger">
               <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
@@ -91,7 +88,6 @@
               </div>
             </div>
           </div>
-
           <div class="dropdown-saved">
             <div class="dropdown-trigger">
               <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
@@ -118,41 +114,59 @@
               </div>
             </div>
           </div>
+
+          <div class="dropdown-saved">
+            <div class="dropdown-trigger">
+              <a href="reviews.html">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-saved-recipes">
+                  <span>Reviews</span>
+                </button>
+              </a>
+            </div>
+          </div>
+
           </div>
         </div>
       </nav>
-      
- <section class="section">
+    
+  <section class="section-results">
     <div class="container">
       <h1 class="title">Food and Drinks Results</h1>
       <ul id="results-list"></ul>
     </div>
+
   </section>
-<!--Hide the function above-->
 
-      <!--Main Section Under Header-->
-      <div id="main-content">
-        <div id="top-row">
-          <div id="find-section">
-            <p>Find a New Cocktail and Dish to Indulge in Today</p>
-            <div id="search-bar">
-              <div class="row">
 
-              </div>
-            </div>
+  <!--Main Section Under Header-->
+  <div id="main-content">
+    <div id="top-row">
+      <div id="find-section">
+        <div id="search-bar">
+          <div class="row">
+
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 
-      <!-- Random drink button -->
-      <button class="js-modal-trigger" data-target="modal-js-random" id="randomDrinkName">
-        Want a drink?
-      </button>
-      <!-- Random meal button -->
-      <button class="js-modal-trigger" data-target="modal-js-random" id="randomMealName">
-        Want a meal?
-      </button>
+  <!-- Random drink button -->
+
+  <div class="button-outside">
+  <h1 class="title">Don't Know Where to Start? Press the Buttons Below!</h1>
+  <div class="button-area">
+  <div class="first-page-buttons">
+  <button class="js-modal-trigger" data-target="modal-js-drink" id="randomDrinkName">
+    Want a drink?
+  </button>
+  <button class="js-modal-trigger" data-target="modal-js-meal" id="randomMealName">
+    Want a meal?
+  </button>
+  </div>
+  </div>
+
 
 
       <!-- Pop up of random drink/meal -->
@@ -176,10 +190,139 @@
             <button class="button is-success" id="saveButton">Save </button>
             <button class="button">Cancel</button>
           </footer>
+
+  <!--Main Section Styling Under Buttons-->
+  <h1 class="title-2">Check out these Featured Eats and Drinks:</h1>
+  <main id="main-section"> 
+
+
+    <div id="first-three-img">
+    <div class="image-container"> 
+      <a href="https://www.simplyrecipes.com/recipes/homemade_pizza/"> 
+        <img src="./Assets/images/pizza-image.png" alt="Image of pizza"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+      </a> 
+    </div> 
+
+
+    <div class="image-container"> 
+      <a href="https://www.liquor.com/recipes/brandy-old-fashioned/"> 
+        <img src="./Assets/images/pretty-cocktail-1.png" alt="Image of cocktail 1"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+
+
+    <div class="image-container"> 
+      <a href="https://www.howsweeteats.com/2019/01/ground-beef-tacos/">   
+        <img src="./Assets/images/tacos-1.png" alt="Image of taco"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+
+        </div>
+      </a> 
+    </div>
+  </div>
+
+  <div id="second-three-img">
+    <div class="image-container"> 
+      <a href="https://www.acouplecooks.com/the-classic-champagne-cocktail/"> 
+        <img src="./Assets/images/pretty-cocktail-2.png" alt="Image of cocktail 3"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+
+    <div class="image-container"> 
+      <a href="https://www.allrecipes.com/recipe/11691/tomato-and-garlic-pasta/"> 
+        <img src="./Assets/images/pasta-1.png" alt="Image of pasta"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+
+
+    <div class="image-container"> 
+      <a href="https://www.yummymummykitchen.com/2019/05/aperol-spritz.html">   
+        <img src="./Assets/images/pretty-cocktail-4.png" alt="Image of cocktail 4"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+    </div>
+
+    
+<div id="third-three-img">
+    <div class="image-container"> 
+      <a href="https://www.vindulge.com/western-burger/"> 
+        <img src="./Assets/images/correct-burger-1.png" alt="Image of burger"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+
+
+    <div class="image-container"> 
+      <a href="https://healthyfitnessmeals.com/cajun-shrimp-recipe/"> 
+        <img src="./Assets/images/shrimp-1.png" alt="Image of shrimp"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+
+    <div class="image-container"> 
+      <a href="https://www.foodandwine.com/drinks/halloween-cocktail-recipes"> 
+        <img src="./Assets/images/dark-cocktail.png" alt="Image of dark cocktail"> 
+        <div class="image-text">
+          <h2>View Recipe</h2>
+        </div>
+      </a> 
+    </div> 
+    </div>
+
+    <div id="fourth-three-img">
+      <div class="image-container"> 
+        <a href="https://www.acouplecooks.com/shrimp-stir-fry/"> 
+          <img src="./Assets/images/stir-fry.png" alt="Image of stir-fry"> 
+          <div class="image-text">
+            <h2>View Recipe</h2>
+          </div>
+        </a> 
+      </div> 
+  
+  
+      <div class="image-container"> 
+        <a href="https://ramshacklepantry.com/cotton-candy-margarita-recipe/"> 
+          <img src="./Assets/images/cotton-candy.png" alt="Image of cotton candy cocktail"> 
+          <div class="image-text">
+            <h2>View Recipe</h2>
+          </div>
+        </a> 
+      </div> 
+  
+      <div class="image-container"> 
+        <a href="https://thewanderlustkitchen.com/asian-salmon/"> 
+          <img src="./Assets/images/salmon-pic.png" alt="Image of salmon"> 
+          <div class="image-text">
+            <h2>View Recipe</h2>
+          </div>
+        </a> 
+      </div> 
       </div>
 
+
+  </div>
+  </main>
 
 
       <!-- Pop up of saved drink/meal -->
@@ -205,57 +348,30 @@
         <button class="modal-close is-large" aria-label="close"></button>
       </div>
 
-      
+  <!-- Footer Section-->
+<section class="fun-facts-section">
+  <div class="fun-facts">
+  <h1 class="title-2">FUN FACTS:</h1>
 
-      <!--Main Section Styling Under Buttons-->
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <div id = "boxes">     
+    <div id = "leftbox">
+        There are approx. 49 million bubbles in a bottle of champagne!
+    </div>
+     
+    <div id = "middlebox">
+        Why not experiment with new foods? What have you got to lose? Even the most adventurous eaters make an effort to explore new foods. You can spice things up by attempting a new dish or food pairings. Instead of asking "why", contemplate "why not".
+    </div>
+     
+    <div id = "rightbox">
+        Clinking glasses to good health is typically known as a ‘toast,’ but why is that? Well, the term originated in Ancient Rome when a piece of toasted bread was dropped into wine before it was drunk.
+    </div>
+</div>
+</div>
+</section>
 
-      <main id="main-section">
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/pretty-cocktail-1.png" alt="Image of cocktail 1">
-          </a>
-        </div>
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/tacos-1.png" alt="Image of food 2">
-          </a>
-        </div>
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/pretty-cocktail-2.png" alt="Image of cocktail 3">
-          </a>
-        </div>
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/pasta-1.png" alt="Image of cocktail 1">
-          </a>
-        </div>
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/pretty-cocktail-4.png" alt="Image of food 2">
-          </a>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
-        </div>
-        <div class="image-container">
-          <a href="#">
-            <img src="./Assets/images/correct-burger-1.png" alt="Image of cocktail 3">
-          </a>
-        </div>
-      </main>
-
-      <!-- Footer Section-->
-      <footer id="footer">
-        <div class="footer-content">
-          <p>Paragraph 1</p>
-          <p>Paragraph 2</p>
-          <p>Paragraph 3</p>
-        </div>
-      </footer>
-
-      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  
 
   <script src="./Assets/script.js">
     (function () {
@@ -267,6 +383,7 @@
       });
     })();
   </script>
+  </div>
 </body>
 
 </html>

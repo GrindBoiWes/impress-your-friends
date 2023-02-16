@@ -574,7 +574,7 @@ function displayData(data) {
       drinkItem.innerHTML = `
         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
         <h3>${drink.strDrink}</h3>
-        <button class="ingredients-button" data-drink-id="${drink.idDrink}">Ingredients & Instructions</button>
+        <button class="ingredients-button" data-drink-id="${drink.idDrink}">Ingredients & Instructions</button>    
       `;
       resultsList.appendChild(drinkItem);
     });
