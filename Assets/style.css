@@ -76,10 +76,11 @@
 }
 
 .button {
-    background-color:#6B201D;
+    background-color:#8a5b5a;
+    border-color: #8a5b5a;
     color: antiquewhite;
     position:relative;
-    border-color: #6B201D;
+    text-decoration: none;
     padding-left: 3em;
     margin-right: 10px;
     justify-content: center;
@@ -89,8 +90,9 @@
  .menu-title {
   display:flex;
   justify-content: space-between;
-  margin-right: 10px;
+  margin-left: 110px;
   padding: 20px;
+  margin-top:55px;
 }
 
  span {
